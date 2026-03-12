@@ -11,30 +11,102 @@ crossorigin="anonymous"></script>
 
 <title>Ferramentas Online</title>
 
-<style>
-body{
-margin:0;
-font-family:Arial;
-background:#0f0f0f;
-color:#fff
-}
+<link rel="stylesheet" href="style.css">
 
-header{
-background:#000;
-padding:20px;
-text-align:center;
-border-bottom:1px solid #222
-}
+</head>
 
-.container{
-padding:20px;
-max-width:900px;
-margin:auto
-}
+<body>
 
-.card{
-background:#1a1a1a;
-padding:20px;
+<header>
+<h1>🔧 Ferramentas Online</h1>
+<p>Utilidades grátis da internet</p>
+</header>
+
+<div class="container">
+
+<!-- ANUNCIO -->
+<div id="anuncio" style="display:none;text-align:center;margin:20px">
+
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-3707008419271765"
+data-ad-slot="2879308857"
+data-ad-format="auto"
+data-full-width-responsive="true"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+<button onclick="toggleFerramentas()" class="btnAbrir">
+📂 Abrir Ferramentas
+</button>
+
+<div id="areaFerramentas" style="display:none">
+
+<div class="card">
+<h3>🔑 Gerador de Senha</h3>
+<input id="senhaGerada">
+<button onclick="gerarSenha()">Gerar senha</button>
+</div>
+
+<div class="card">
+<h3>📱 Gerador de Link WhatsApp</h3>
+<input id="telefone" placeholder="Telefone com DDD">
+<input id="mensagem" placeholder="Mensagem">
+<button onclick="gerarLinkWhats()">Gerar Link</button>
+<input id="linkGerado">
+</div>
+
+<div class="card">
+<h3>🔲 Gerador de QR Code</h3>
+<input id="qrTexto" placeholder="Texto ou link">
+<button onclick="gerarQR()">Gerar QR Code</button>
+<div id="qrResultado"></div>
+</div>
+
+<div class="card">
+<h3>🔤 Converter Texto</h3>
+<textarea id="textoEntrada"></textarea>
+<button onclick="maiusculo()">MAIÚSCULO</button>
+<button onclick="minusculo()">minúsculo</button>
+</div>
+
+<div class="card">
+<h3>📊 Contador de caracteres</h3>
+<textarea id="contadorTexto" onkeyup="contar()"></textarea>
+<p id="totalCaracteres">0 caracteres</p>
+</div>
+
+<div class="card">
+<h3>🎲 Número aleatório</h3>
+<input id="min" placeholder="mínimo">
+<input id="max" placeholder="máximo">
+<button onclick="gerarNumero()">Gerar número</button>
+<p id="numeroResultado"></p>
+</div>
+
+<div class="card">
+<h3>📥 Baixar vídeo do YouTube</h3>
+<input id="videoLink" placeholder="Cole link do vídeo">
+<button onclick="baixarVideo()">Abrir download</button>
+</div>
+
+</div>
+
+<div class="card">
+<h3>📊 Visitas</h3>
+<p id="visitas"></p>
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>padding:20px;
 border-radius:10px;
 margin-bottom:15px;
 box-shadow:0 0 10px rgba(0,0,0,0.5)
