@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3707008419271765"
+     crossorigin="anonymous
+     ></script>
+     
+<title>Ferramentas Online</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0f0f0f;
+color:#fff
+}
+
+header{
+background:#000;
+padding:20px;
+text-align:center;
+border-bottom:1px solid #222
+}
+
+.container{
+padding:20px;
+max-width:900px;
+margin:auto
+}
+
+.card{
+background:#1a1a1a;
+padding:20px;
+border-radius:10px;
+margin-bottom:15px;
+box-shadow:0 0 10px rgba(0,0,0,0.5)
+}
+
+button{
+padding:12px;
+border:none;
+border-radius:6px;
+background:#00c853;
+color:#fff;
+cursor:pointer;
+margin-top:10px;
+width:100%
+}
+
+input, textarea{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:6px;
+border:1px solid #333;
+background:#000;
+color:#fff
+}
+
+</style>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3707008419271765"
+crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+<header>
+<h1>🔧 Ferramentas Online</h1>
+<p>Utilidades grátis da internet</p>
+</header>
+
+<!-- ANUNCIO -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3707008419271765"
+     data-ad-slot="2879308857"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<button onclick="toggleFerramentas()" style="background:#2196f3">
+📂 Abrir Ferramentas
+</button>
+
+<div id="areaFerramentas" style="display:none">
+
+<div class="card">
+<h3>🔑 Gerador de Senha</h3>
+<input id="senhaGerada">
+<button onclick="gerarSenha()">Gerar senha</button>
+</div>
+
+<div class="card">
+<h3>📱 Gerador de Link WhatsApp</h3>
+<input id="telefone" placeholder="Telefone com DDD">
+<input id="mensagem" placeholder="Mensagem">
+<button onclick="gerarLinkWhats()">Gerar Link</button>
+<input id="linkGerado">
+</div>
+
+<div class="card">
+<h3>🔲 Gerador de QR Code</h3>
+<input id="qrTexto" placeholder="Texto ou link">
+<button onclick="gerarQR()">Gerar QR Code</button>
+<div id="qrResultado"></div>
+</div>
+
+<div class="card">
+<h3>🔤 Converter Texto</h3>
+<textarea id="textoEntrada"></textarea>
+<button onclick="maiusculo()">MAIÚSCULO</button>
+<button onclick="minusculo()">minúsculo</button>
+</div>
+
+<div class="card">
+<h3>📊 Contador de caracteres</h3>
+<textarea id="contadorTexto" onkeyup="contar()"></textarea>
+<p id="totalCaracteres">0 caracteres</p>
+</div>
+
+<div class="card">
+<h3>🎲 Número aleatório</h3>
+<input id="min" placeholder="mínimo">
+<input id="max" placeholder="máximo">
+<button onclick="gerarNumero()">Gerar número</button>
+<p id="numeroResultado"></p>
+</div>
+
+<div class="card">
+<h3>📥 Baixar vídeo do YouTube</h3>
+<input id="videoLink" placeholder="Cole link do vídeo">
+<button onclick="baixarVideo()">Abrir download</button>
+</div>
+
+</div>
+
+<div class="card">
+<h3>📊 Visitas</h3>
+<p id="visitas"></p>
+</div>
+
+</div>
+
+<script>
+
+function toggleFerramentas(){
+let area=document.getElementById("areaFerramentas")
+area.style.display = area.style.display==="none" ? "block":"none"
+}
+
+function gerarSenha(){
+let caracteres="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+let senha=""
+for(let i=0;i<12;i++){
+senha+=caracteres.charAt(Math.floor(Math.random()*caracteres.length))
+}
+document.getElementById("senhaGerada").value=senha
+}
+
+function gerarLinkWhats(){
+let telefone=document.getElementById("telefone").value
+let mensagem=document.getElementById("mensagem").value
+let link="https://wa.me/"+telefone+"?text="+encodeURIComponent(mensagem)
+document.getElementById("linkGerado").value=link
+}
+
+function gerarQR(){
+let texto=document.getElementById("qrTexto").value
+let url="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="+encodeURIComponent(texto)
+document.getElementById("qrResultado").innerHTML="<img src='"+url+"'>"
+}
+
+function maiusculo(){
+let t=document.getElementById("textoEntrada")
+t.value=t.value.toUpperCase()
+}
+
+function minusculo(){
+let t=document.getElementById("textoEntrada")
+t.value=t.value.toLowerCase()
+}
+
+function contar(){
+let t=document.getElementById("contadorTexto").value.length
+document.getElementById("totalCaracteres").innerText=t+" caracteres"
+}
+
+function gerarNumero(){
+let min=parseInt(document.getElementById("min").value)
+let max=parseInt(document.getElementById("max").value)
+
+if(isNaN(min) || isNaN(max)){
+alert("Digite números válidos")
+return
+}
+
+let n=Math.floor(Math.random()*(max-min+1))+min
+document.getElementById("numeroResultado").innerText=n
+}
+
+function extrairID(url){
+if(url.includes("v=")){
+return url.split("v=")[1].split("&")[0]
+}
+if(url.includes("youtu.be/")){
+return url.split("youtu.be/")[1].split("?")[0]
+}
+return url
+}
+
+function baixarVideo(){
+let url=document.getElementById("videoLink").value
+let id=extrairID(url)
+
+if(id){
+window.open("https://ssyoutube.com/watch?v="+id)
+}
+}
+
+let v=localStorage.getItem("visitas")||0
+v++
+localStorage.setItem("visitas",v)
+document.getElementById("visitas").innerText="Total de visitas: "+v
+
+</script>
+
+</body>
+</html>
