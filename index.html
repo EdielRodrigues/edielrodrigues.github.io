@@ -298,7 +298,22 @@ behavior:"smooth"
 })
 
 }
+<script>
 
+function mostrar(secao){
+
+let secoes=document.querySelectorAll(".secao")
+
+secoes.forEach(s=>s.style.display="none")
+
+document.getElementById(secao).style.display="block"
+
+}
+
+// abre ferramentas ao entrar
+mostrar("ferramentas")
+
+</script>
 </script>
 
 </html>
