@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Link WhatsApp</title>
+
+<style>
+body{font-family:Arial;background:#0f0f0f;color:white;text-align:center;padding:40px}
+input{padding:10px;width:250px;margin:5px}
+</style>
+
+</head>
+
+<body>
+
+<h1>📱 Gerar Link WhatsApp</h1>
+
+<input id="tel" placeholder="Telefone">
+
+<input id="msg" placeholder="Mensagem">
+
+<br>
+
+<button onclick="gerar()">Gerar link</button>
+
+<input id="link">
+
+<script>
+
+function gerar(){
+
+let tel=document.getElementById("tel").value
+
+let msg=document.getElementById("msg").value
+
+let link="https://wa.me/"+tel+"?text="+encodeURIComponent(msg)
+
+document.getElementById("link").value=link
+
+}
+
+</script>
+
+</body>
+</html>
