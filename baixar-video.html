@@ -1,1 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Baixar vídeo</title>
 
+<style>
+body{font-family:Arial;background:#0f0f0f;color:white;text-align:center;padding:40px}
+input{padding:10px;width:300px}
+</style>
+
+</head>
+
+<body>
+
+<h1>📥 Baixar vídeo do YouTube</h1>
+
+<input id="link" placeholder="Cole o link do vídeo">
+
+<br>
+
+<button onclick="baixar()">Baixar</button>
+
+<script>
+
+function baixar(){
+
+let url=document.getElementById("link").value
+
+window.open("https://ssyoutube.com/"+url)
+
+}
+
+</script>
+
+</body>
+</html>
