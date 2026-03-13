@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Gerador de CPF</title>
+
+<meta name="google-adsense-account" content="ca-pub-3707008419271765">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3707008419271765"
+crossorigin="anonymous"></script>
+
+<style>
+body{font-family:Arial;background:#0f0f0f;color:white;text-align:center;padding:40px}
+input{padding:10px;width:200px}
+</style>
+
+</head>
+
+<body>
+<!-- BOTÃO VOLTAR -->
+<a href="index.html" style="color:white;text-decoration:none;">
+⬅ Voltar para Ferramentas
+</a>
+
+<h1>📄 Gerador de CPF</h1>
+
+<!-- ANUNCIO -->
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-3707008419271765"
+data-ad-slot="2879308857"
+data-ad-format="auto"
+data-full-width-responsive="true"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<input id="cpf">
+
+<br><br>
+
+<button onclick="gerar()">Gerar CPF</button>
+
+<script>
+
+function gerar(){
+
+let n=[]
+
+for(let i=0;i<9;i++){
+
+n.push(Math.floor(Math.random()*9))
+
+}
+
+let d1=0
+
+for(let i=0;i<9;i++){
+
+d1+=n[i]*(10-i)
+
+}
+
+d1=11-(d1%11)
+
+if(d1>=10)d1=0
+
+n.push(d1)
+
+let d2=0
+
+for(let i=0;i<10;i++){
+
+d2+=n[i]*(11-i)
+
+}
+
+d2=11-(d2%11)
+
+if(d2>=10)d2=0
+
+n.push(d2)
+
+document.getElementById("cpf").value=n.join("")
+
+}
+
+</script>
+
+</body>
+</html>
