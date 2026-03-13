@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Central de Calculadoras</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#0f0f0f;
+color:white
+}
+
+header{
+background:#000;
+padding:20px;
+text-align:center;
+border-bottom:1px solid #222
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px
+}
+
+.card{
+background:#1a1a1a;
+padding:20px;
+border-radius:12px;
+box-shadow:0 0 10px rgba(0,0,0,0.5)
+}
+
+h3{
+margin-top:0
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:5px;
+margin-bottom:10px;
+border-radius:6px;
+border:none;
+background:#000;
+color:white
+}
+
+button{
+padding:10px;
+border:none;
+border-radius:6px;
+background:#2196f3;
+color:white;
+cursor:pointer;
+width:100%
+}
+
+.display{
+font-size:20px;
+text-align:right
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🧮 Central de Calculadoras</h1>
+<p>Ferramentas matemáticas online gratuitas</p>
+
+</header>
+
+<div class="container">
+
+<div class="grid">
+
+<!-- CALCULADORA BASICA -->
+
+<div class="card">
+
+<h3>Calculadora Básica</h3>
+
+<input id="display" class="display">
+
+<button onclick="num('7')">7</button>
+<button onclick="num('8')">8</button>
+<button onclick="num('9')">9</button>
+<button onclick="num('+')">+</button>
+
+<button onclick="num('4')">4</button>
+<button onclick="num('5')">5</button>
+<button onclick="num('6')">6</button>
+<button onclick="num('-')">-</button>
+
+<button onclick="num('1')">1</button>
+<button onclick="num('2')">2</button>
+<button onclick="num('3')">3</button>
+<button onclick="num('*')">×</button>
+
+<button onclick="num('0')">0</button>
+<button onclick="num('.')">.</button>
+<button onclick="calc()">=</button>
+<button onclick="num('/')">÷</button>
+
+</div>
+
+<!-- IMC -->
+
+<div class="card">
+
+<h3>Calculadora IMC</h3>
+
+<input id="peso" placeholder="Peso (kg)">
+<input id="altura" placeholder="Altura (m)">
+
+<button onclick="imc()">Calcular</button>
+
+<p id="resultadoIMC"></p>
+
+</div>
+
+<!-- PORCENTAGEM -->
+
+<div class="card">
+
+<h3>Porcentagem</h3>
+
+<input id="valor">
+<input id="porcento">
+
+<button onclick="porcentagem()">Calcular</button>
+
+<p id="resultadoPorc"></p>
+
+</div>
+
+<!-- IDADE -->
+
+<div class="card">
+
+<h3>Calculadora de Idade</h3>
+
+<input type="date" id="data">
+
+<button onclick="idade()">Calcular</button>
+
+<p id="resultadoIdade"></p>
+
+</div>
+
+<!-- REGRA DE 3 -->
+
+<div class="card">
+
+<h3>Regra de 3</h3>
+
+<input id="a" placeholder="A">
+<input id="b" placeholder="B">
+<input id="c" placeholder="C">
+
+<button onclick="regra()">Calcular</button>
+
+<p id="resultadoRegra"></p>
+
+</div>
+
+<!-- JUROS SIMPLES -->
+
+<div class="card">
+
+<h3>Juros Simples</h3>
+
+<input id="capital" placeholder="Capital">
+<input id="taxa" placeholder="Taxa %">
+<input id="tempo" placeholder="Tempo">
+
+<button onclick="juros()">Calcular</button>
+
+<p id="resultadoJuros"></p>
+
+</div>
+
+<!-- JUROS COMPOSTOS -->
+
+<div class="card">
+
+<h3>Juros Compostos</h3>
+
+<input id="valorInicial" placeholder="Valor inicial">
+<input id="taxaJuros" placeholder="Taxa %">
+<input id="periodo" placeholder="Períodos">
+
+<button onclick="compostos()">Calcular</button>
+
+<p id="resultadoCompostos"></p>
+
+</div>
+
+<!-- POTENCIA -->
+
+<div class="card">
+
+<h3>Potência</h3>
+
+<input id="base" placeholder="Base">
+<input id="expoente" placeholder="Expoente">
+
+<button onclick="potencia()">Calcular</button>
+
+<p id="resultadoPotencia"></p>
+
+</div>
+
+<!-- RAIZ -->
+
+<div class="card">
+
+<h3>Raiz Quadrada</h3>
+
+<input id="numeroRaiz">
+
+<button onclick="raiz()">Calcular</button>
+
+<p id="resultadoRaiz"></p>
+
+</div>
+
+<!-- TEMPERATURA -->
+
+<div class="card">
+
+<h3>Conversor de Temperatura</h3>
+
+<input id="celsius" placeholder="Celsius">
+
+<button onclick="temp()">Converter</button>
+
+<p id="resultadoTemp"></p>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function num(n){
+document.getElementById("display").value+=n
+}
+
+function calc(){
+let d=document.getElementById("display")
+d.value=eval(d.value)
+}
+
+function imc(){
+
+let p=document.getElementById("peso").value
+let a=document.getElementById("altura").value
+
+let r=p/(a*a)
+
+document.getElementById("resultadoIMC").innerText="IMC: "+r.toFixed(2)
+
+}
+
+function porcentagem(){
+
+let v=document.getElementById("valor").value
+let p=document.getElementById("porcento").value
+
+let r=(v*p)/100
+
+document.getElementById("resultadoPorc").innerText="Resultado: "+r
+
+}
+
+function idade(){
+
+let d=new Date(document.getElementById("data").value)
+let hoje=new Date()
+
+let r=hoje.getFullYear()-d.getFullYear()
+
+document.getElementById("resultadoIdade").innerText="Idade: "+r
+
+}
+
+function regra(){
+
+let a=document.getElementById("a").value
+let b=document.getElementById("b").value
+let c=document.getElementById("c").value
+
+let r=(b*c)/a
+
+document.getElementById("resultadoRegra").innerText="Resultado: "+r
+
+}
+
+function juros(){
+
+let c=document.getElementById("capital").value
+let t=document.getElementById("taxa").value
+let tempo=document.getElementById("tempo").value
+
+let r=c*(t/100)*tempo
+
+document.getElementById("resultadoJuros").innerText="Juros: "+r
+
+}
+
+function compostos(){
+
+let v=document.getElementById("valorInicial").value
+let t=document.getElementById("taxaJuros").value
+let p=document.getElementById("periodo").value
+
+let r=v*Math.pow((1+t/100),p)
+
+document.getElementById("resultadoCompostos").innerText="Total: "+r.toFixed(2)
+
+}
+
+function potencia(){
+
+let b=document.getElementById("base").value
+let e=document.getElementById("expoente").value
+
+let r=Math.pow(b,e)
+
+document.getElementById("resultadoPotencia").innerText="Resultado: "+r
+
+}
+
+function raiz(){
+
+let n=document.getElementById("numeroRaiz").value
+
+let r=Math.sqrt(n)
+
+document.getElementById("resultadoRaiz").innerText="Resultado: "+r
+
+}
+
+function temp(){
+
+let c=document.getElementById("celsius").value
+
+let f=(c*9/5)+32
+
+document.getElementById("resultadoTemp").innerText="Fahrenheit: "+f
+
+}
+
+</script>
+
+</body>
+</html>
