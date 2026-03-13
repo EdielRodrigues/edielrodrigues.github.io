@@ -3,13 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Gerador de Senha</title>
+
+<style>
+body{font-family:Arial;background:#0f0f0f;color:white;text-align:center;padding:40px}
+input{padding:10px;width:250px}
+button{padding:10px;margin-top:10px}
+</style>
+
 </head>
 
 <body>
 
-<h1>Gerador de Senha</h1>
+<h1>🔑 Gerador de Senha</h1>
 
 <input id="senha">
+
+<br>
 
 <button onclick="gerar()">Gerar senha</button>
 
@@ -21,7 +30,9 @@ let caracteres="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 let senha=""
 
 for(let i=0;i<12;i++){
+
 senha+=caracteres.charAt(Math.floor(Math.random()*caracteres.length))
+
 }
 
 document.getElementById("senha").value=senha
