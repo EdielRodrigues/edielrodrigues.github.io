@@ -108,6 +108,12 @@ background:#1976d2;
 
 }
 
+.secao{
+
+display:none;
+
+}
+
 </style>
 
 </head>
@@ -148,6 +154,13 @@ data-full-width-responsive="true"></ins>
 </script>
 
 </div>
+  
+<div id="ferramentas" class="secao">
+
+<h2>🔧 Ferramentas</h2>
+
+<div class="grid">
+
 <!-- FERRAMENTAS -->
 
 <h2>🔧 Ferramentas</h2>
@@ -234,11 +247,13 @@ data-full-width-responsive="true"></ins>
 </div>
 
 
-<!-- CALCULADORA -->
+<div id="calculadoras" class="secao">
 
-<h2>🧮 Calculadora</h2>
+<h2>🧮 Calculadoras</h2>
 
 <div class="grid">
+
+<!-- CALCULADORA -->
 
 <a href="calculadora.html">
 <div class="card">
@@ -247,9 +262,33 @@ data-full-width-responsive="true"></ins>
 </div>
 </a>
 
+</div>
+
+
+<div id="jogos" class="secao">
+
+<h2>🎮 Jogos</h2>
+
+<div class="grid">
+
+<p>Em breve jogos aqui</p>
 
 </div>
 
+<script>
+
+function mostrar(secao){
+
+let secoes=document.querySelectorAll(".secao")
+
+secoes.forEach(s=>s.style.display="none")
+
+document.getElementById(secao).style.display="block"
+
+}
+
+</script>
+  
 </body>
   <script>
 
