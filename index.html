@@ -117,7 +117,21 @@ display:none;
 </style>
 
 </head>
+  
+<script>
 
+function mostrar(secao){
+
+let secoes=document.querySelectorAll(".secao")
+
+secoes.forEach(s=>s.style.display="none")
+
+document.getElementById(secao).style.display="block"
+
+}
+
+</script>
+  
 <body>
 <div class="menuFlutuante">
 
@@ -274,20 +288,6 @@ data-full-width-responsive="true"></ins>
 <p>Em breve jogos aqui</p>
 
 </div>
-
-<script>
-
-function mostrar(secao){
-
-let secoes=document.querySelectorAll(".secao")
-
-secoes.forEach(s=>s.style.display="none")
-
-document.getElementById(secao).style.display="block"
-
-}
-
-</script>
   
 </body>
   <script>
