@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Contador de Palavras</title>
+
+<meta name="google-adsense-account" content="ca-pub-3707008419271765">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3707008419271765"
+crossorigin="anonymous"></script>
+
+<style>
+body{font-family:Arial;background:#0f0f0f;color:white;text-align:center;padding:40px}
+textarea{width:300px;height:150px}
+</style>
+
+</head>
+
+<body>
+<!-- BOTÃO VOLTAR -->
+<a href="index.html" style="color:white;text-decoration:none;">
+⬅ Voltar para Ferramentas
+</a>
+
+<h1>📝 Contador de Palavras</h1>
+
+<!-- ANUNCIO -->
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-3707008419271765"
+data-ad-slot="2879308857"
+data-ad-format="auto"
+data-full-width-responsive="true"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<textarea id="texto" onkeyup="contar()"></textarea>
+
+<p id="resultado">0 palavras</p>
+
+<script>
+
+function contar(){
+
+let texto=document.getElementById("texto").value.trim()
+
+let palavras=texto.split(/\s+/).filter(Boolean)
+
+document.getElementById("resultado").innerText=palavras.length+" palavras"
+
+}
+
+</script>
+
+</body>
+</html>
