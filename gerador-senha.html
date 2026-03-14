@@ -162,23 +162,5 @@ set(ferramentaRef,uso);
 
 </script>
 
-
-</body>
-</html>const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-const ferramentaRef = ref(db,"ferramentas/geradorSenha");
-
-get(ferramentaRef).then((snapshot)=>{
-
-let uso = snapshot.val() || 0;
-uso++;
-
-set(ferramentaRef,uso);
-
-});
-
-</script>
-
 </body>
 </html>
