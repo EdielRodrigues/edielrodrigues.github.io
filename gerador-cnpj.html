@@ -1,13 +1,65 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
+
 <title>Gerador de CNPJ</title>
 
 <meta name="google-adsense-account" content="ca-pub-3707008419271765">
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3707008419271765"
 crossorigin="anonymous"></script>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#0f0f0f;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+height:100vh;
+}
+
+.container{
+text-align:center;
+width:90%;
+max-width:500px;
+}
+
+h1{
+font-size:34px;
+margin-bottom:20px;
+}
+
+button{
+width:100%;
+padding:16px;
+font-size:20px;
+margin-top:15px;
+border:none;
+border-radius:8px;
+background:#2196f3;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#1976d2;
+}
+
+.resultado{
+margin-top:25px;
+font-size:26px;
+font-weight:bold;
+}
+
+</style>
+
 </head>
 
 <body>
@@ -16,8 +68,9 @@ crossorigin="anonymous"></script>
 ⬅ Voltar para Ferramentas
 </a>
 
-<h1>Gerador de CNPJ</h1>
+<div class="container">
 
+<h1>Gerador de CNPJ</h1>
 <!-- ANUNCIO -->
 <ins class="adsbygoogle"
 style="display:block"
@@ -28,11 +81,13 @@ data-full-width-responsive="true"></ins>
 
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+                                              </script>
 
 <button onclick="gerar()">Gerar CNPJ</button>
 
-<p id="cnpj"></p>
+<p id="cnpj" class="resultado"></p>
+
+</div>
 
 <script>
 
@@ -40,8 +95,9 @@ function gerar(){
 
 let n=""
 
-for(let i=0;i<14;i++)
+for(let i=0;i<14;i++){
 n+=Math.floor(Math.random()*10)
+}
 
 document.getElementById("cnpj").innerText=n
 
@@ -50,4 +106,5 @@ document.getElementById("cnpj").innerText=n
 </script>
 
 </body>
+
 </html>
