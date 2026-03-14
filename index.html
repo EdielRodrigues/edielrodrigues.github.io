@@ -24,7 +24,9 @@ nenhum aplicativo. Nosso objetivo é oferecer utilidades simples, rápidas e gra
 </p>
 
 </section>
-
+  
+<p>👁️ Visitas no site: <span id="contador">0</span></p>
+  
 <meta name="description" content="Ferramentas online grátis: gerador de senha, QR Code, contador de caracteres, link WhatsApp e muito mais.">
 
 <meta name="google-adsense-account" content="ca-pub-3707008419271765">
@@ -134,7 +136,48 @@ display:none;
 </style>
 
 </head>
-  
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyDrtZxbKXk7hjlqBL_BLoZMTBdc5iqBCXo",
+
+authDomain: "ferramentas-projeto.firebaseapp.com",
+
+databaseURL: "https://ferramentas-projeto-default-rtdb.firebaseio.com/",
+
+projectId: "ferramentas-projeto",
+
+storageBucket: "ferramentas-projeto.appspot.com",
+
+messagingSenderId: "877191590019",
+
+appId: "1:877191590019:web:152d4d35bdd3024c53abb6"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getDatabase(app);
+
+const visitasRef = ref(db, "visitas");
+
+get(visitasRef).then((snapshot)=>{
+
+let visitas = snapshot.val() || 0;
+
+visitas++;
+
+set(visitasRef, visitas);
+
+document.getElementById("contador").innerText = visitas;
+
+});
+    
+</script>
   
 <body>
 <div class="menuFlutuante">
