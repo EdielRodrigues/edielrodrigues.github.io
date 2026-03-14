@@ -25,7 +25,29 @@ nenhum aplicativo. Nosso objetivo é oferecer utilidades simples, rápidas e gra
 
 </section>
   
-<p>👁️ Visitas no site: <span id="contador">0</span></p>
+<div class="painel">
+
+<div class="box">
+👁️ Visitas hoje
+<div id="hoje">0</div>
+</div>
+
+<div class="box">
+👥 Visitas totais
+<div id="total">0</div>
+</div>
+
+<div class="box">
+🟢 Visitantes online
+<div id="online">0</div>
+</div>
+
+<div class="box">
+🔥 Ferramenta mais usada
+<div id="top">---</div>
+</div>
+
+</div>
   
 <meta name="description" content="Ferramentas online grátis: gerador de senha, QR Code, contador de caracteres, link WhatsApp e muito mais.">
 
@@ -133,50 +155,101 @@ display:none;
 
 }
 
+.painel{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin:40px auto;
+}
+
+.box{
+background:#1a1a1a;
+padding:25px;
+border-radius:12px;
+text-align:center;
+min-width:180px;
+font-size:20px;
+box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+
+.box div{
+font-size:32px;
+margin-top:10px;
+font-weight:bold;
+color:#4caf50;
+
+}
+
 </style>
 
 </head>
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, get, set, onValue, onDisconnect } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
 
 apiKey: "AIzaSyDrtZxbKXk7hjlqBL_BLoZMTBdc5iqBCXo",
-
 authDomain: "ferramentas-projeto.firebaseapp.com",
-
-databaseURL: "https://ferramentas-projeto-default-rtdb.firebaseio.com/",
-
+databaseURL: "https://ferramentas-projeto.firebaseio.com/",
 projectId: "ferramentas-projeto",
-
 storageBucket: "ferramentas-projeto.appspot.com",
-
 messagingSenderId: "877191590019",
-
 appId: "1:877191590019:web:152d4d35bdd3024c53abb6"
 
 };
 
 const app = initializeApp(firebaseConfig);
-
 const db = getDatabase(app);
 
-const visitasRef = ref(db, "visitas");
+const totalRef = ref(db,"visitas/total");
+const hojeRef = ref(db,"visitas/hoje");
+const onlineRef = ref(db,"online");
 
-get(visitasRef).then((snapshot)=>{
+// VISITAS TOTAIS
+get(totalRef).then((snapshot)=>{
 
-let visitas = snapshot.val() || 0;
+let total = snapshot.val() || 0;
+total++;
 
-visitas++;
-
-set(visitasRef, visitas);
-
-document.getElementById("contador").innerText = visitas;
+set(totalRef,total);
+document.getElementById("total").innerText=total;
 
 });
-    
+
+// VISITAS HOJE
+get(hojeRef).then((snapshot)=>{
+
+let hoje = snapshot.val() || 0;
+hoje++;
+
+set(hojeRef,hoje);
+document.getElementById("hoje").innerText=hoje;
+
+});
+
+// VISITANTES ONLINE
+
+const userRef = ref(db,"online/"+Math.random());
+
+set(userRef,true);
+
+onDisconnect(userRef).remove();
+
+onValue(onlineRef,(snapshot)=>{
+
+let online = snapshot.size || 0;
+
+document.getElementById("online").innerText=online;
+
+});
+
+// FERRAMENTA MAIS USADA
+
+document.getElementById("top").innerText="Gerador de Senha";
+
 </script>
   
 <body>
