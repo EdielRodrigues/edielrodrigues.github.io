@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://edielrodrigues.github.io/sitemap.xml
