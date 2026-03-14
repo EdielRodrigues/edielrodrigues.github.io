@@ -17,18 +17,6 @@ button{padding:10px;margin-top:10px}
 
 </head>
   
-const ferramentaRef = ref(db,"ferramentas/geradorSenha");
-
-get(ferramentaRef).then((snapshot)=>{
-
-let uso = snapshot.val() || 0;
-
-uso++;
-
-set(ferramentaRef,uso);
-
-});
-  
 <body>
 <!-- BOTÃO VOLTAR -->
 <a href="index.html" style="color:white;text-decoration:none;">
@@ -71,6 +59,17 @@ senha+=caracteres.charAt(Math.floor(Math.random()*caracteres.length))
 document.getElementById("senha").value=senha
 
 }
+const ferramentaRef = ref(db,"ferramentas/geradorSenha");
+
+get(ferramentaRef).then((snapshot)=>{
+
+let uso = snapshot.val() || 0;
+
+uso++;
+
+set(ferramentaRef,uso);
+
+});
 
 </script>
 
