@@ -232,7 +232,10 @@ document.getElementById("hoje").innerText=hoje;
 
 // VISITANTES ONLINE
 
-const userRef = ref(db,"online/"+Math.random());
+const onlineRef = ref(db,"online");
+const userId = Date.now();
+
+const userRef = ref(db,"online/"+userId);
 
 set(userRef,true);
 
@@ -240,15 +243,38 @@ onDisconnect(userRef).remove();
 
 onValue(onlineRef,(snapshot)=>{
 
-let online = snapshot.size || 0;
+let online = snapshot.numChildren();
 
-document.getElementById("online").innerText=online;
+document.getElementById("online").innerText = online;
 
 });
 
 // FERRAMENTA MAIS USADA
 
-document.getElementById("top").innerText="Gerador de Senha";
+const ferramentasRef = ref(db,"ferramentas");
+
+onValue(ferramentasRef,(snapshot)=>{
+
+let dados = snapshot.val();
+
+let top = "";
+let maior = 0;
+
+for(let ferramenta in dados){
+
+if(dados[ferramenta] > maior){
+
+maior = dados[ferramenta];
+
+top = ferramenta;
+
+}
+
+}
+
+document.getElementById("top").innerText = top;
+
+});
 
 </script>
   
