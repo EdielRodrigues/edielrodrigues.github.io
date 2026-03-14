@@ -445,7 +445,13 @@ onDisconnect(userRef).remove();
 
 onValue(onlineRef,(snapshot)=>{
 
-let online = snapshot.numChildren();
+let dados = snapshot.val();
+
+let online = 0;
+
+if(dados){
+online = Object.keys(dados).length;
+}
 
 document.getElementById("online").innerText = online;
 
