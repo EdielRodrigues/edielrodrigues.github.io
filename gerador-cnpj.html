@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Gerador de CNPJ</title>
+</head>
+
+<body>
+
+<h1>Gerador de CNPJ</h1>
+
+<button onclick="gerar()">Gerar CNPJ</button>
+
+<p id="cnpj"></p>
+
+<script>
+
+function gerar(){
+
+let n=""
+
+for(let i=0;i<14;i++)
+n+=Math.floor(Math.random()*10)
+
+document.getElementById("cnpj").innerText=n
+
+}
+
+</script>
+
+</body>
+</html>
