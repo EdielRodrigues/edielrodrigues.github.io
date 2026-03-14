@@ -184,100 +184,7 @@ color:#4caf50;
 </style>
 
 </head>
-<script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, get, set, onValue, onDisconnect } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-const firebaseConfig = {
-
-apiKey: "AIzaSyDrtZxbKXk7hjlqBL_BLoZMTBdc5iqBCXo",
-authDomain: "ferramentas-projeto.firebaseapp.com",
-databaseURL: "https://ferramentas-projeto.firebaseio.com/",
-projectId: "ferramentas-projeto",
-storageBucket: "ferramentas-projeto.appspot.com",
-messagingSenderId: "877191590019",
-appId: "1:877191590019:web:152d4d35bdd3024c53abb6"
-
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-const totalRef = ref(db,"visitas/total");
-const hojeRef = ref(db,"visitas/hoje");
-const onlineRef = ref(db,"online");
-
-// VISITAS TOTAIS
-get(totalRef).then((snapshot)=>{
-
-let total = snapshot.val() || 0;
-total++;
-
-set(totalRef,total);
-document.getElementById("total").innerText=total;
-
-});
-
-// VISITAS HOJE
-get(hojeRef).then((snapshot)=>{
-
-let hoje = snapshot.val() || 0;
-hoje++;
-
-set(hojeRef,hoje);
-document.getElementById("hoje").innerText=hoje;
-
-});
-
-// VISITANTES ONLINE
-
-const onlineRef = ref(db,"online");
-const userId = Date.now();
-
-const userRef = ref(db,"online/"+userId);
-
-set(userRef,true);
-
-onDisconnect(userRef).remove();
-
-onValue(onlineRef,(snapshot)=>{
-
-let online = snapshot.numChildren();
-
-document.getElementById("online").innerText = online;
-
-});
-
-// FERRAMENTA MAIS USADA
-
-const ferramentasRef = ref(db,"ferramentas");
-
-onValue(ferramentasRef,(snapshot)=>{
-
-let dados = snapshot.val();
-
-let top = "";
-let maior = 0;
-
-for(let ferramenta in dados){
-
-if(dados[ferramenta] > maior){
-
-maior = dados[ferramenta];
-
-top = ferramenta;
-
-}
-
-}
-
-document.getElementById("top").innerText = top;
-
-});
-
-</script>
-  
 <body>
 <div class="menuFlutuante">
   
@@ -471,6 +378,107 @@ secoes.forEach(s=>s.style.display="none")
 document.getElementById(secao).style.display="block"
 
 }
+
+</script>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, get, set, onValue, onDisconnect } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyDrtZxbKXk7hjlqBL_BLoZMTBdc5iqBCXo",
+authDomain: "ferramentas-projeto.firebaseapp.com",
+databaseURL: "https://ferramentas-projeto.firebaseio.com/",
+projectId: "ferramentas-projeto",
+storageBucket: "ferramentas-projeto.appspot.com",
+messagingSenderId: "877191590019",
+appId: "1:877191590019:web:152d4d35bdd3024c53abb6"
+
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// VISITAS TOTAIS
+const totalRef = ref(db,"visitas/total");
+
+get(totalRef).then((snapshot)=>{
+
+let total = snapshot.val() || 0;
+
+total++;
+
+set(totalRef,total);
+
+document.getElementById("total").innerText = total;
+
+});
+
+// VISITAS HOJE
+const hojeRef = ref(db,"visitas/hoje");
+
+get(hojeRef).then((snapshot)=>{
+
+let hoje = snapshot.val() || 0;
+
+hoje++;
+
+set(hojeRef,hoje);
+
+document.getElementById("hoje").innerText = hoje;
+
+});
+
+// VISITANTES ONLINE
+
+const onlineRef = ref(db,"online");
+
+const userId = Date.now();
+
+const userRef = ref(db,"online/"+userId);
+
+set(userRef,true);
+
+onDisconnect(userRef).remove();
+
+onValue(onlineRef,(snapshot)=>{
+
+let online = snapshot.numChildren();
+
+document.getElementById("online").innerText = online;
+
+});
+
+// FERRAMENTA MAIS USADA
+
+const ferramentasRef = ref(db,"ferramentas");
+
+onValue(ferramentasRef,(snapshot)=>{
+
+let dados = snapshot.val();
+
+if(!dados) return;
+
+let top = "";
+let maior = 0;
+
+for(let ferramenta in dados){
+
+if(dados[ferramenta] > maior){
+
+maior = dados[ferramenta];
+
+top = ferramenta;
+
+}
+
+}
+
+document.getElementById("top").innerText = top;
+
+});
 
 </script>
   
