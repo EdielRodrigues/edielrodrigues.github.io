@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Gerador de RG</title>
+</head>
+
+<body>
+
+<h1>Gerador de RG</h1>
+
+<button onclick="gerar()">Gerar RG</button>
+
+<p id="rg"></p>
+
+<script>
+
+function gerar(){
+
+let n=""
+
+for(let i=0;i<9;i++)
+n+=Math.floor(Math.random()*10)
+
+document.getElementById("rg").innerText=n
+
+}
+
+</script>
+
+</body>
+</html>
