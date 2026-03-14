@@ -59,6 +59,25 @@ senha+=caracteres.charAt(Math.floor(Math.random()*caracteres.length))
 document.getElementById("senha").value=senha
 
 }
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyDrtZxbKXk7hjlqBL_BLoZMTBdc5iqBCXo",
+authDomain: "ferramentas-projeto.firebaseapp.com",
+databaseURL: "https://ferramentas-projeto.firebaseio.com/",
+projectId: "ferramentas-projeto",
+storageBucket: "ferramentas-projeto.appspot.com",
+messagingSenderId: "877191590019",
+appId: "1:877191590019:web:152d4d35bdd3024c53abb6"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
 const ferramentaRef = ref(db,"ferramentas/geradorSenha");
 
 get(ferramentaRef).then((snapshot)=>{
