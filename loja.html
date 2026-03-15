@@ -5,13 +5,8 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-adsense-account" content="ca-pub-3707008419271765">
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3707008419271765"
-crossorigin="anonymous"></script>
-<a class="voltar" href="index.html">← Voltar</a>
-  
-<title>Loja Online</title>
+<title>Vitrine Shopee</title>
 
 <style>
 
@@ -20,37 +15,11 @@ font-family:Arial;
 background:#0f0f0f;
 color:white;
 margin:0;
+text-align:center;
 }
 
-header{
-background:#111;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-header input{
-padding:8px;
-border-radius:6px;
-border:none;
-}
-
-.categorias{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-justify-content:center;
-padding:15px;
-}
-
-.categorias button{
-padding:8px 15px;
-border:none;
-background:#1e88e5;
-color:white;
-border-radius:6px;
-cursor:pointer;
+h1{
+margin:30px 0;
 }
 
 .produtos{
@@ -63,52 +32,33 @@ padding:20px;
 .card{
 background:#1a1a1a;
 padding:15px;
-border-radius:10px;
-text-align:center;
+border-radius:12px;
 }
 
 .card img{
 width:100%;
-border-radius:8px;
+border-radius:10px;
+}
+
+.card h3{
+font-size:15px;
+margin:10px 0;
+}
+
+.preco{
+color:#4caf50;
+font-size:18px;
 }
 
 .card button{
-margin-top:8px;
-padding:8px;
+margin-top:10px;
+padding:10px;
+background:#ee4d2d;
 border:none;
 border-radius:6px;
-background:#ee4d2d;
 color:white;
 cursor:pointer;
-}
-
-.carrinho{
-position:fixed;
-right:-320px;
-top:0;
-width:300px;
-height:100%;
-background:#111;
-padding:20px;
-transition:0.3s;
-overflow:auto;
-}
-
-.carrinho.ativo{
-right:0;
-}
-
-.botaoCarrinho{
-position:fixed;
-right:20px;
-bottom:20px;
-background:#ee4d2d;
-color:white;
-border:none;
-padding:15px;
-border-radius:50%;
-font-size:22px;
-cursor:pointer;
+width:100%;
 }
 
 </style>
@@ -117,151 +67,113 @@ cursor:pointer;
 
 <body>
 
-<header>
+<h1>🔥 Ofertas Shopee</h1>
 
-<h2>🛒 Loja</h2>
-<!-- ANUNCIO -->
-<ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-3707008419271765"
-data-ad-slot="2879308857"
-data-ad-format="auto"
-data-full-width-responsive="true"></ins>
-
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-  
-<input type="text" id="busca" placeholder="Buscar">
-
-</header>
-
-<div class="categorias">
-
-<button onclick="filtrar('todos')">Todos</button>
-<button onclick="filtrar('eletronicos')">Eletrônicos</button>
-<button onclick="filtrar('games')">Games</button>
-<button onclick="filtrar('acessorios')">Acessórios</button>
-
-</div>
-
-<div class="produtos" id="produtos"></div>
-
-<div class="carrinho">
-
-<h3>🛒 Carrinho</h3>
-
-<div id="listaCarrinho"></div>
-
-</div>
-
-<button class="botaoCarrinho" onclick="abrirCarrinho()">🛒</button>
-
-<script>
-
-let produtos=[];
-let carrinho=[];
-
-let categorias=["eletronicos","games","acessorios"];
-
-for(let i=1;i<=120;i++){
-
-let cat=categorias[Math.floor(Math.random()*categorias.length)];
-
-produtos.push({
-
-nome:"Produto "+i,
-categoria:cat,
-img:"https://picsum.photos/200?random="+i,
-link:"https://br.shp.ee/uVosRBAm"
-
-});
-
-}
-
-function mostrar(lista){
-
-let area=document.getElementById("produtos");
-
-area.innerHTML="";
-
-lista.forEach(p=>{
-
-area.innerHTML+=`
+<div class="produtos">
 
 <div class="card">
 
-<img src="${p.img}">
+<img src="https://picsum.photos/200?1">
 
-<h3>${p.nome}</h3>
+<h3>Smartwatch X8</h3>
 
-<p>${p.categoria}</p>
+<p class="preco">R$ 79,90</p>
 
-<button onclick="addCarrinho('${p.nome}')">Adicionar</button>
+<a target="_blank" href="SEU_LINK_AFILIADO">
 
-<a target="_blank" href="${p.link}">
-<button>Comprar</button>
+<button>Comprar na Shopee</button>
+
 </a>
 
 </div>
 
-`;
 
-});
+<div class="card">
 
-}
+<img src="https://picsum.photos/200?2">
 
-mostrar(produtos);
+<h3>Fone Bluetooth</h3>
 
-function filtrar(cat){
+<p class="preco">R$ 39,90</p>
 
-if(cat==="todos"){
+<a target="_blank" href="SEU_LINK_AFILIADO">
 
-mostrar(produtos);
+<button>Comprar na Shopee</button>
 
-}else{
+</a>
 
-let filtro=produtos.filter(p=>p.categoria===cat);
+</div>
 
-mostrar(filtro);
 
-}
+<div class="card">
 
-}
+<img src="https://picsum.photos/200?3">
 
-document.getElementById("busca").addEventListener("keyup",function(){
+<h3>Mouse Gamer</h3>
 
-let texto=this.value.toLowerCase();
+<p class="preco">R$ 59,90</p>
 
-let filtro=produtos.filter(p=>p.nome.toLowerCase().includes(texto));
+<a target="_blank" href="SEU_LINK_AFILIADO">
 
-mostrar(filtro);
+<button>Comprar na Shopee</button>
 
-});
+</a>
 
-function addCarrinho(nome){
+</div>
 
-carrinho.push(nome);
 
-let lista=document.getElementById("listaCarrinho");
+<div class="card">
 
-lista.innerHTML="";
+<img src="https://picsum.photos/200?4">
 
-carrinho.forEach(item=>{
+<h3>Caixa de Som Bluetooth</h3>
 
-lista.innerHTML+="<p>"+item+"</p>";
+<p class="preco">R$ 69,90</p>
 
-});
+<a target="_blank" href="SEU_LINK_AFILIADO">
 
-}
+<button>Comprar na Shopee</button>
 
-function abrirCarrinho(){
+</a>
 
-document.querySelector(".carrinho").classList.toggle("ativo");
+</div>
 
-}
 
-</script>
+<div class="card">
+
+<img src="https://picsum.photos/200?5">
+
+<h3>Teclado RGB Gamer</h3>
+
+<p class="preco">R$ 119,90</p>
+
+<a target="_blank" href="SEU_LINK_AFILIADO">
+
+<button>Comprar na Shopee</button>
+
+</a>
+
+</div>
+
+
+<div class="card">
+
+<img src="https://picsum.photos/200?6">
+
+<h3>Headset Gamer</h3>
+
+<p class="preco">R$ 89,90</p>
+
+<a target="_blank" href="SEU_LINK_AFILIADO">
+
+<button>Comprar na Shopee</button>
+
+</a>
+
+</div>
+
+</div>
+  
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -280,7 +192,7 @@ appId: "1:877191590019:web:152d4d35bdd3024c53abb6"
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-const ferramentaRef = ref(db,"ferramentas/loja");
+const ferramentaRef = ref(db,"ferramentas/loja.html");
 
 get(ferramentaRef).then((snapshot)=>{
 
