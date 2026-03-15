@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Loja Online</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#0f0f0f;
+color:white;
+text-align:center;
+}
+
+h1{
+margin-top:30px;
+}
+
+.produtos{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+padding:30px;
+}
+
+.card{
+background:#1a1a1a;
+padding:15px;
+border-radius:12px;
+}
+
+.card img{
+width:100%;
+border-radius:8px;
+}
+
+.card h3{
+font-size:15px;
+margin:10px 0;
+}
+
+.card button{
+padding:10px;
+background:#ee4d2d;
+border:none;
+border-radius:6px;
+color:white;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🔥 Ofertas</h1>
+
+<div class="produtos" id="produtos"></div>
+
+<script>
+
+let lista = [
+
+{
+nome:"Fone Bluetooth",
+img:"https://picsum.photos/200?1",
+link:"https://shopee.com.br"
+},
+
+{
+nome:"Smartwatch",
+img:"https://picsum.photos/200?2",
+link:"https://shopee.com.br"
+},
+
+{
+nome:"Caixa de Som",
+img:"https://picsum.photos/200?3",
+link:"https://shopee.com.br"
+},
+
+{
+nome:"Carregador Turbo",
+img:"https://picsum.photos/200?4",
+link:"https://shopee.com.br"
+},
+
+{
+nome:"Mouse Gamer",
+img:"https://picsum.photos/200?5",
+link:"https://shopee.com.br"
+},
+
+{
+nome:"Teclado RGB",
+img:"https://picsum.photos/200?6",
+link:"https://shopee.com.br"
+}
+
+];
+
+let area = document.getElementById("produtos");
+
+lista.forEach(p=>{
+
+area.innerHTML += `
+
+<div class="card">
+
+<img src="${p.img}">
+
+<h3>${p.nome}</h3>
+
+<a target="_blank" href="${p.link}">
+
+<button>Comprar</button>
+
+</a>
+
+</div>
+
+`;
+
+});
+
+</script>
+
+</body>
+
+</html><body>
+
+<h1>🔥 Ofertas Shopee</h1>
+
+<div class="produtos" id="produtos"></div>
+
+<script>
+
+let produtos = [
+
+{
+nome:"Fone Bluetooth",
+preco:"R$ 39,90",
+img:"https://via.placeholder.com/200",
+link:"https://shopee.com.br"
+},
+
+{
+nome:"Smartwatch",
+preco:"R$ 79,90",
+img:"https://via.placeholder.com/200",
+link:"https://shopee.com.br"
+},
+
+{
+nome:"Carregador Turbo",
+preco:"R$ 29,90",
+img:"https://via.placeholder.com/200",
+link:"https://shopee.com.br"
+}
+
+];
+
+let area = document.getElementById("produtos");
+
+produtos.forEach(p=>{
+
+area.innerHTML += `
+<div class="card">
+
+<img src="${p.img}">
+
+<h3>${p.nome}</h3>
+
+<p>${p.preco}</p>
+
+<a target="_blank" href="${p.link}">
+
+<button>Comprar</button>
+
+</a>
+
+</div>
+`;
+
+});
+
+</script>
+
+</body>
+
+</html>
