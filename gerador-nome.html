@@ -2,12 +2,13 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Gerador de Nome</title>
-
+<a class="voltar" href="index.html">← Voltar</a>
 <meta name="google-adsense-account" content="ca-pub-3707008419271765">
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3707008419271765"
 crossorigin="anonymous"></script>
+  
+<title>Gerador de Nome</title>
 
 <style>
 body{font-family:Arial;background:#0f0f0f;color:white;text-align:center;padding:40px}
@@ -16,11 +17,6 @@ body{font-family:Arial;background:#0f0f0f;color:white;text-align:center;padding:
 </head>
 
 <body>
-<!-- BOTÃO VOLTAR -->
-<a href="index.html" style="color:white;text-decoration:none;">
-⬅ Voltar para Ferramentas
-</a>
-
 
 <h1>👤 Gerador de Nome</h1>
 
@@ -53,6 +49,36 @@ document.getElementById("nome").innerText=n
 }
 
 </script>
+<script type="module">
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyDrtZxbKXk7hjlqBL_BLoZMTBdc5iqBCXo",
+authDomain: "ferramentas-projeto.firebaseapp.com",
+databaseURL: "https://ferramentas-projeto.firebaseio.com/",
+projectId: "ferramentas-projeto",
+storageBucket: "ferramentas-projeto.appspot.com",
+messagingSenderId: "877191590019",
+appId: "1:877191590019:web:152d4d35bdd3024c53abb6"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const ferramentaRef = ref(db,"ferramentas/gerador-nome");
+
+get(ferramentaRef).then((snapshot)=>{
+
+let uso = snapshot.val() || 0;
+uso++;
+
+set(ferramentaRef,uso);
+
+});
+
+</script>
+  
 </body>
 </html>
