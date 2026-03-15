@@ -10,57 +10,6 @@
 <input type="text" id="buscar" placeholder="🔎 Buscar produtos..." onkeyup="buscarProduto()">
   
 <style>
-
-body{
-font-family:Arial;
-background:#0f0f0f;
-color:white;
-margin:0;
-text-align:center;
-}
-
-h1{
-margin:30px 0;
-}
-
-.produtos{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:20px;
-padding:20px;
-}
-
-.card{
-background:#1a1a1a;
-padding:15px;
-border-radius:12px;
-}
-
-.card img{
-width:100%;
-border-radius:10px;
-}
-
-.card h3{
-font-size:15px;
-margin:10px 0;
-}
-
-.preco{
-color:#4caf50;
-font-size:18px;
-}
-
-.card button{
-margin-top:10px;
-padding:10px;
-background:#ee4d2d;
-border:none;
-border-radius:6px;
-color:white;
-cursor:pointer;
-width:100%;
-}
   
 #buscar{
 width:90%;
@@ -73,59 +22,6 @@ display:block;
 font-size:16px;
 }
 
-.produto{
-
-background:#1b1b1b;
-padding:15px;
-border-radius:15px;
-text-align:center;
-box-shadow:0 0 10px rgba(0,0,0,0.5);
-position:relative;
-
-}
-
-.produto img{
-
-width:100%;
-border-radius:10px;
-
-}
-
-.preco{
-
-margin:10px 0;
-
-}
-
-.antes{
-
-text-decoration:line-through;
-color:#888;
-margin-right:10px;
-
-}
-
-.agora{
-
-color:#00ff88;
-font-size:20px;
-font-weight:bold;
-
-}
-
-.produto button{
-
-background:#ff5722;
-border:none;
-padding:12px;
-width:100%;
-border-radius:10px;
-color:white;
-font-size:16px;
-cursor:pointer;
-
-}
-
 .promo{
 
 position:absolute;
@@ -135,6 +31,104 @@ background:red;
 padding:5px 10px;
 border-radius:8px;
 font-size:12px;
+
+}
+
+body{
+background:#000;
+color:white;
+font-family:Arial;
+margin:0;
+padding:0;
+text-align:center;
+}
+
+/* TITULO */
+
+h1{
+margin-top:30px;
+}
+
+/* VITRINE CENTRALIZADA */
+
+.vitrine{
+
+width:100%;
+max-width:900px;
+
+margin:auto;
+
+padding:20px;
+
+}
+
+/* PRODUTO */
+
+.produto{
+
+background:#111;
+
+border-radius:15px;
+
+padding:15px;
+
+margin-bottom:30px;
+
+text-align:center;
+
+}
+
+/* IMAGEM */
+
+.produto img{
+
+display:block;
+
+margin:auto;
+
+max-width:100%;
+
+border-radius:10px;
+
+}
+
+/* PREÇO */
+
+.preco{
+
+color:#00ff88;
+
+font-size:20px;
+
+margin:10px 0;
+
+}
+
+/* BOTÃO */
+
+.produto button{
+
+background:#ff5722;
+
+border:none;
+
+padding:12px;
+
+width:100%;
+
+border-radius:10px;
+
+color:white;
+
+font-size:16px;
+
+cursor:pointer;
+
+}
+
+.produto button:hover{
+
+background:#ff3d00;
 
 }
 
