@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Loja Online</title>
+<title>Loja de Produtos</title>
 
 <style>
 
@@ -35,6 +35,80 @@ border-radius:12px;
 }
 
 .card img{
+width:100%;
+border-radius:8px;
+}
+
+.card h3{
+font-size:14px;
+margin:10px 0;
+}
+
+.card button{
+padding:10px;
+background:#ee4d2d;
+border:none;
+border-radius:6px;
+color:white;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🔥 Ofertas da Loja</h1>
+
+<div class="produtos" id="produtos"></div>
+
+<script>
+
+let area = document.getElementById("produtos");
+
+let nomes = [
+"Fone Bluetooth",
+"Smartwatch",
+"Carregador Turbo",
+"Mouse Gamer",
+"Teclado RGB",
+"Caixa de Som",
+"Headset Gamer",
+"Cabo USB",
+"Lâmpada LED",
+"Câmera WiFi"
+];
+
+for(let i=1;i<=120;i++){
+
+let nome = nomes[Math.floor(Math.random()*nomes.length)];
+
+area.innerHTML += `
+
+<div class="card">
+
+<img src="https://picsum.photos/200?random=${i}">
+
+<h3>${nome}</h3>
+
+<a target="_blank" href="https://shopee.com.br">
+
+<button>Comprar</button>
+
+</a>
+
+</div>
+
+`;
+
+}
+
+</script>
+
+</body>
+
+</html>.card img{
 width:100%;
 border-radius:8px;
 }
