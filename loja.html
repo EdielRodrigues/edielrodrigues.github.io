@@ -7,10 +7,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Vitrine Shopee</title>
-<input type="text" id="buscar" placeholder="🔎 Buscar produtos..." onkeyup="buscarProduto()">
-  
+
 <style>
-  
+
+body{
+background:#000;
+color:white;
+font-family:Arial;
+margin:0;
+padding:0;
+text-align:center;
+}
+
+/* BUSCA */
+
 #buscar{
 width:90%;
 max-width:500px;
@@ -21,6 +31,40 @@ margin:20px auto;
 display:block;
 font-size:16px;
 }
+
+/* VITRINE */
+
+.vitrine{
+
+max-width:900px;
+margin:auto;
+padding:20px;
+
+}
+
+/* PRODUTO */
+
+.produto{
+
+background:#111;
+border-radius:15px;
+padding:15px;
+margin-bottom:30px;
+text-align:center;
+position:relative;
+
+}
+
+/* IMAGEM */
+
+.produto img{
+
+width:100%;
+border-radius:10px;
+
+}
+
+/* PROMO */
 
 .promo{
 
@@ -34,73 +78,25 @@ font-size:12px;
 
 }
 
-body{
-background:#000;
-color:white;
-font-family:Arial;
-margin:0;
-padding:0;
-text-align:center;
-}
-
-/* TITULO */
-
-h1{
-margin-top:30px;
-}
-
-/* VITRINE CENTRALIZADA */
-
-.vitrine{
-
-width:100%;
-max-width:900px;
-
-margin:auto;
-
-padding:20px;
-
-}
-
-/* PRODUTO */
-
-.produto{
-
-background:#111;
-
-border-radius:15px;
-
-padding:15px;
-
-margin-bottom:30px;
-
-text-align:center;
-
-}
-
-/* IMAGEM */
-
-.produto img{
-
-display:block;
-
-margin:auto;
-
-max-width:100%;
-
-border-radius:10px;
-
-}
-
 /* PREÇO */
 
 .preco{
 
-color:#00ff88;
-
-font-size:20px;
-
 margin:10px 0;
+
+}
+
+.antes{
+
+text-decoration:line-through;
+color:#aaa;
+
+}
+
+.agora{
+
+color:#00ff88;
+font-size:20px;
 
 }
 
@@ -109,19 +105,12 @@ margin:10px 0;
 .produto button{
 
 background:#ff5722;
-
 border:none;
-
 padding:12px;
-
 width:100%;
-
 border-radius:10px;
-
 color:white;
-
 font-size:16px;
-
 cursor:pointer;
 
 }
@@ -138,13 +127,21 @@ background:#ff3d00;
 
 <body>
 
+<h1>🔥 Ofertas Shopee</h1>
+
+<input type="text" id="buscar" placeholder="🔎 Buscar produtos..." onkeyup="buscarProduto()">
+
+<div class="vitrine">
+
+<!-- PRODUTO -->
+
 <div class="produto">
 
 <span class="promo">🔥 Oferta</span>
 
 <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lquly5gqlxdn10@resize_w1080_nl.webp">
 
-<h3>Confira Caixa de som Bluetooth Com Led RGB Portátil USB FM TWS com 62% de desconto! Somente R$107,32</h3>
+<h3>Caixa de som Bluetooth RGB Portátil USB FM TWS</h3>
 
 <div class="preco">
 <span class="antes">R$ 149,90</span>
@@ -157,12 +154,14 @@ background:#ff3d00;
 
 </div>
 
+
+<div class="produto">
 
 <span class="promo">🔥 Oferta</span>
 
 <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lquly5gqlxdn10@resize_w1080_nl.webp">
 
-<h3>Confira Caixa de som Bluetooth Com Led RGB Portátil USB FM TWS com 62% de desconto! Somente R$107,32</h3>
+<h3>Caixa de som Bluetooth RGB Portátil USB FM TWS</h3>
 
 <div class="preco">
 <span class="antes">R$ 149,90</span>
@@ -175,12 +174,13 @@ background:#ff3d00;
 
 </div>
 
+<div class="produto">
 
 <span class="promo">🔥 Oferta</span>
 
 <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lquly5gqlxdn10@resize_w1080_nl.webp">
 
-<h3>Confira Caixa de som Bluetooth Com Led RGB Portátil USB FM TWS com 62% de desconto! Somente R$107,32</h3>
+<h3>Caixa de som Bluetooth RGB Portátil USB FM TWS</h3>
 
 <div class="preco">
 <span class="antes">R$ 149,90</span>
@@ -193,12 +193,13 @@ background:#ff3d00;
 
 </div>
 
+<div class="produto">
 
 <span class="promo">🔥 Oferta</span>
 
 <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lquly5gqlxdn10@resize_w1080_nl.webp">
 
-<h3>Confira Caixa de som Bluetooth Com Led RGB Portátil USB FM TWS com 62% de desconto! Somente R$107,32</h3>
+<h3>Caixa de som Bluetooth RGB Portátil USB FM TWS</h3>
 
 <div class="preco">
 <span class="antes">R$ 149,90</span>
@@ -211,13 +212,13 @@ background:#ff3d00;
 
 </div>
 
-
+<div class="produto">
 
 <span class="promo">🔥 Oferta</span>
 
 <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lquly5gqlxdn10@resize_w1080_nl.webp">
 
-<h3>Confira Caixa de som Bluetooth Com Led RGB Portátil USB FM TWS com 62% de desconto! Somente R$107,32</h3>
+<h3>Caixa de som Bluetooth RGB Portátil USB FM TWS</h3>
 
 <div class="preco">
 <span class="antes">R$ 149,90</span>
@@ -230,92 +231,8 @@ background:#ff3d00;
 
 </div>
 
-
-
-<span class="promo">🔥 Oferta</span>
-
-<img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lquly5gqlxdn10@resize_w1080_nl.webp">
-
-<h3>Confira Caixa de som Bluetooth Com Led RGB Portátil USB FM TWS com 62% de desconto! Somente R$107,32</h3>
-
-<div class="preco">
-<span class="antes">R$ 149,90</span>
-<span class="agora">R$ 107,32</span>
 </div>
 
-<a href="https://br.shp.ee/uVosRBAm" target="_blank">
-<button>Comprar na Shopee</button>
-</a>
-
-</div>
-
-<span class="promo">🔥 Oferta</span>
-
-<img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lquly5gqlxdn10@resize_w1080_nl.webp">
-
-<h3>Confira Caixa de som Bluetooth Com Led RGB Portátil USB FM TWS com 62% de desconto! Somente R$107,32</h3>
-
-<div class="preco">
-<span class="antes">R$ 149,90</span>
-<span class="agora">R$ 107,32</span>
-</div>
-
-<a href="https://br.shp.ee/uVosRBAm" target="_blank">
-<button>Comprar na Shopee</button>
-</a>
-
-</div>
-
-<span class="promo">🔥 Oferta</span>
-
-<img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lquly5gqlxdn10@resize_w1080_nl.webp">
-
-<h3>Confira Caixa de som Bluetooth Com Led RGB Portátil USB FM TWS com 62% de desconto! Somente R$107,32</h3>
-
-<div class="preco">
-<span class="antes">R$ 149,90</span>
-<span class="agora">R$ 107,32</span>
-</div>
-
-<a href="https://br.shp.ee/uVosRBAm" target="_blank">
-<button>Comprar na Shopee</button>
-</a>
-
-</div>
-
-
-</div>
-  
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-const firebaseConfig = {
-apiKey: "AIzaSyDrtZxbKXk7hjlqBL_BLoZMTBdc5iqBCXo",
-authDomain: "ferramentas-projeto.firebaseapp.com",
-databaseURL: "https://ferramentas-projeto.firebaseio.com/",
-projectId: "ferramentas-projeto",
-storageBucket: "ferramentas-projeto.appspot.com",
-messagingSenderId: "877191590019",
-appId: "1:877191590019:web:152d4d35bdd3024c53abb6"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-const ferramentaRef = ref(db,"ferramentas/loja.html");
-
-get(ferramentaRef).then((snapshot)=>{
-
-let uso = snapshot.val() || 0;
-uso++;
-
-set(ferramentaRef,uso);
-
-});
-
-</script>
 <script>
 
 function buscarProduto(){
@@ -342,7 +259,37 @@ p.style.display="none";
 }
 
 </script>
-  
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyDrtZxbKXk7hjlqBL_BLoZMTBdc5iqBCXo",
+authDomain: "ferramentas-projeto.firebaseapp.com",
+databaseURL: "https://ferramentas-projeto.firebaseio.com/",
+projectId: "ferramentas-projeto",
+storageBucket: "ferramentas-projeto.appspot.com",
+messagingSenderId: "877191590019",
+appId: "1:877191590019:web:152d4d35bdd3024c53abb6"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const ferramentaRef = ref(db,"ferramentas/loja");
+
+get(ferramentaRef).then((snapshot)=>{
+
+let uso = snapshot.val() || 0;
+uso++;
+
+set(ferramentaRef,uso);
+
+});
+
+</script>
+
 </body>
 
 </html>
