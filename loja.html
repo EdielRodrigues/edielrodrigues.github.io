@@ -121,6 +121,40 @@ background:#ff3d00;
 
 }
 
+.categorias{
+
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+padding:10px;
+
+}
+
+.categorias button{
+
+background:#222;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:20px;
+cursor:pointer;
+font-size:14px;
+
+}
+
+.categorias button:hover{
+
+background:#ff5722;
+
+}
+
+.categorias .ativo{
+
+background:#ff5722;
+
+}
+
 </style>
 
 </head>
@@ -130,13 +164,39 @@ background:#ff3d00;
 <h1>🔥 Ofertas Shopee</h1>
 
 <input type="text" id="buscar" placeholder="🔎 Buscar produtos..." onkeyup="buscarProduto()">
+<div class="categorias">
 
+<button onclick="filtrarCategoria('todos')" class="ativo">Todos</button>
+
+<button onclick="filtrarCategoria('fone')">🎧 Fones</button>
+
+<button onclick="filtrarCategoria('relogio')">⌚ Relógios</button>
+
+<button onclick="filtrarCategoria('caixa')">🔊 Caixas de Som</button>
+
+<button onclick="filtrarCategoria('teclado')">⌨️ Teclados</button>
+
+<button onclick="filtrarCategoria('mouse')">🖱️ Mouse</button>
+
+<button onclick="filtrarCategoria('luz')">💡 Luz LED</button>
+
+<button onclick="filtrarCategoria('carregador')">🔌 Carregadores</button>
+
+<button onclick="filtrarCategoria('cabo')">🔗 Cabos</button>
+
+<button onclick="filtrarCategoria('suporte')">📱 Suportes</button>
+
+<button onclick="filtrarCategoria('gamer')">🎮 Gamer</button>
+
+</div>
+  
 <div class="vitrine">
 
 <!-- PRODUTO -->
 
-<div class="produto">
-
+<div class="produto"
+data-categoria="caixa">
+  
 <span class="promo">🔥 Oferta</span>
 
 <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lquly5gqlxdn10@resize_w1080_nl.webp">
@@ -155,8 +215,9 @@ background:#ff3d00;
 </div>
 
 
-<div class="produto">
-
+<div class="produto"
+data-categoria="caixa">
+  
 <span class="promo">🔥 Oferta</span>
 
 <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lquly5gqlxdn10@resize_w1080_nl.webp">
@@ -174,8 +235,9 @@ background:#ff3d00;
 
 </div>
 
-<div class="produto">
-
+<div class="produto"
+data-categoria="caixa">
+  
 <span class="promo">🔥 Oferta</span>
 
 <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lquly5gqlxdn10@resize_w1080_nl.webp">
@@ -193,8 +255,9 @@ background:#ff3d00;
 
 </div>
 
-<div class="produto">
-
+<div class="produto"
+data-categoria="caixa">
+  
 <span class="promo">🔥 Oferta</span>
 
 <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lquly5gqlxdn10@resize_w1080_nl.webp">
@@ -212,17 +275,17 @@ background:#ff3d00;
 
 </div>
 
-<div class="produto">
-
+<div class="produto"
+data-categoria="fone">
 <span class="promo">🔥 Oferta</span>
 
 <img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lquly5gqlxdn10@resize_w1080_nl.webp">
 
-<h3>Caixa de som Bluetooth RGB Portátil USB FM TWS</h3>
+<h3>Fone de Bluetooth</h3>
 
 <div class="preco">
-<span class="antes">R$ 149,90</span>
-<span class="agora">R$ 107,32</span>
+<span class="antes">R$ 49,90</span>
+<span class="agora">R$ 39,90</span>
 </div>
 
 <a href="https://br.shp.ee/uVosRBAm" target="_blank">
@@ -289,7 +352,46 @@ set(ferramentaRef,uso);
 });
 
 </script>
+<script>
 
+function filtrarCategoria(categoria){
+
+let produtos = document.querySelectorAll(".produto");
+
+produtos.forEach(p=>{
+
+if(categoria === "todos"){
+
+p.style.display="block";
+
+}else{
+
+if(p.dataset.categoria === categoria){
+
+p.style.display="block";
+
+}else{
+
+p.style.display="none";
+
+}
+
+}
+
+});
+
+/* mudar cor do botão */
+
+let botoes = document.querySelectorAll(".categorias button");
+
+botoes.forEach(b=>b.classList.remove("ativo"));
+
+event.target.classList.add("ativo");
+
+}
+
+</script>
+  
 </body>
 
 </html>
