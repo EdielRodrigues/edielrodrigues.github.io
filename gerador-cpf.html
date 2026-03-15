@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<a class="voltar" href="index.html">← Voltar</a>
 <title>Gerador de CPF</title>
 
 <meta name="google-adsense-account" content="ca-pub-3707008419271765">
@@ -17,10 +18,7 @@ input{padding:10px;width:200px}
 </head>
 
 <body>
-<!-- BOTÃO VOLTAR -->
-<a href="index.html" style="color:white;text-decoration:none;">
-⬅ Voltar para Ferramentas
-</a>
+
 
 <h1>📄 Gerador de CPF</h1>
 
@@ -86,6 +84,36 @@ document.getElementById("cpf").value=n.join("")
 
 }
 
+</script>
+
+  <script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyDrtZxbKXk7hjlqBL_BLoZMTBdc5iqBCXo",
+authDomain: "ferramentas-projeto.firebaseapp.com",
+databaseURL: "https://ferramentas-projeto.firebaseio.com/",
+projectId: "ferramentas-projeto",
+storageBucket: "ferramentas-projeto.appspot.com",
+messagingSenderId: "877191590019",
+appId: "1:877191590019:web:152d4d35bdd3024c53abb6"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const ferramentaRef = ref(db,"ferramentas/gerador-cpf");
+
+get(ferramentaRef).then((snapshot)=>{
+
+let uso = snapshot.val() || 0;
+uso++;
+
+set(ferramentaRef,uso);
+
+});
 </script>
 
 </body>
