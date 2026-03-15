@@ -7,7 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Vitrine Shopee</title>
-
+<input type="text" id="buscar" placeholder="🔎 Buscar produtos..." onkeyup="buscarProduto()">
+  
 <style>
 
 body{
@@ -60,6 +61,17 @@ color:white;
 cursor:pointer;
 width:100%;
 }
+  
+#buscar{
+width:90%;
+max-width:500px;
+padding:12px;
+border-radius:10px;
+border:none;
+margin:20px auto;
+display:block;
+font-size:16px;
+}
 
 </style>
 
@@ -67,22 +79,21 @@ width:100%;
 
 <body>
 
-<h1>🔥 Ofertas Shopee</h1>
+<div class="produto">
 
-<div class="produtos">
+<span class="promo">🔥 Oferta</span>
 
-<div class="card">
+<img src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-lquly5gqlxdn10@resize_w1080_nl.webp">
 
-<img src="https://picsum.photos/200?1">
+<h3>Confira Caixa de som Bluetooth Com Led RGB Portátil USB FM TWS com 62% de desconto! Somente R$107,32</h3>
 
-<h3>Smartwatch X8</h3>
+<div class="preco">
+<span class="antes">R$ 149,90</span>
+<span class="agora">R$ 107,32</span>
+</div>
 
-<p class="preco">R$ 79,90</p>
-
-<a target="_blank" href="SEU_LINK_AFILIADO">
-
+<a href="https://br.shp.ee/uVosRBAm" target="_blank">
 <button>Comprar na Shopee</button>
-
 </a>
 
 </div>
