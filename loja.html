@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
 <meta charset="UTF-8">
@@ -18,25 +19,24 @@ margin:0;
 
 header{
 background:#111;
-padding:20px;
+padding:15px;
 display:flex;
 justify-content:space-between;
 align-items:center;
 }
 
 header input{
-padding:10px;
-width:200px;
+padding:8px;
 border-radius:6px;
 border:none;
 }
 
 .categorias{
 display:flex;
-gap:10px;
-padding:15px;
-justify-content:center;
 flex-wrap:wrap;
+gap:10px;
+justify-content:center;
+padding:15px;
 }
 
 .categorias button{
@@ -68,24 +68,42 @@ border-radius:8px;
 }
 
 .card button{
-margin-top:10px;
+margin-top:8px;
 padding:8px;
-background:#ee4d2d;
 border:none;
-color:white;
 border-radius:6px;
+background:#ee4d2d;
+color:white;
 cursor:pointer;
 }
 
 .carrinho{
 position:fixed;
-right:0;
+right:-320px;
 top:0;
 width:300px;
 height:100%;
 background:#111;
 padding:20px;
+transition:0.3s;
 overflow:auto;
+}
+
+.carrinho.ativo{
+right:0;
+}
+
+.botaoCarrinho{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#ee4d2d;
+color:white;
+border:none;
+padding:15px;
+border-radius:50%;
+font-size:22px;
+cursor:pointer;
 }
 
 </style>
@@ -98,7 +116,7 @@ overflow:auto;
 
 <h2>🛒 Loja</h2>
 
-<input type="text" id="busca" placeholder="Buscar produto">
+<input type="text" id="busca" placeholder="Buscar">
 
 </header>
 
@@ -121,16 +139,18 @@ overflow:auto;
 
 </div>
 
+<button class="botaoCarrinho" onclick="abrirCarrinho()">🛒</button>
+
 <script>
 
-let produtos = [];
-let carrinho = [];
+let produtos=[];
+let carrinho=[];
 
-let categorias = ["eletronicos","games","acessorios"];
+let categorias=["eletronicos","games","acessorios"];
 
 for(let i=1;i<=120;i++){
 
-let cat = categorias[Math.floor(Math.random()*categorias.length)];
+let cat=categorias[Math.floor(Math.random()*categorias.length)];
 
 produtos.push({
 
@@ -219,7 +239,14 @@ lista.innerHTML+="<p>"+item+"</p>";
 
 }
 
+function abrirCarrinho(){
+
+document.querySelector(".carrinho").classList.toggle("ativo");
+
+}
+
 </script>
 
 </body>
+
 </html>
