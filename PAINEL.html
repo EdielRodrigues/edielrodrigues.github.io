@@ -51,24 +51,23 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 let map;
-let markers={};
+let markers = {};
+let rotas = {};
 
 window.initMap=function(){
 
 map=new google.maps.Map(document.getElementById("map"),{
 
-zoom:5,
-center:{lat:-15,lng:-55}
+zoom:6,
+center:{lat:-18,lng:-49}
 
 });
-
-}
-
-/* pegar todas localizações */
 
 onValue(ref(db,"localizacoes"),snapshot=>{
 
 let dados=snapshot.val();
+
+if(!dados) return;
 
 for(let id in dados){
 
@@ -79,10 +78,44 @@ let lng=l.longitude;
 
 if(!markers[id]){
 
-markers[id]=new google.maps.Marker({
+let marker=new google.maps.Marker({
 
 position:{lat:lat,lng:lng},
 map:map
+
+});
+
+markers[id]=marker;
+
+/* criar rota */
+
+rotas[id]=new google.maps.Polyline({
+
+path:[{lat:lat,lng:lng}],
+geodesic:true,
+strokeColor:"#00ff9d",
+strokeOpacity:1,
+strokeWeight:3,
+map:map
+
+});
+
+/* janela info */
+
+let info=new google.maps.InfoWindow();
+
+marker.addListener("click",()=>{
+
+info.setContent(
+"<div style='background:#0f0f0f;color:white;padding:10px;border-radius:6px'>"+
+"<b>Cidade:</b> "+l.cidade+"<br>"+
+"<b>País:</b> "+l.pais+"<br>"+
+"<b>IP:</b> "+l.ip+"<br>"+
+"<b>Celular:</b> "+l.celular+
+"</div>"
+);
+
+info.open(map,marker);
 
 });
 
@@ -90,34 +123,18 @@ map:map
 
 markers[id].setPosition({lat:lat,lng:lng});
 
+/* atualizar linha */
+
+let caminho = rotas[id].getPath();
+caminho.push(new google.maps.LatLng(lat,lng));
+
 }
-
-let info = new google.maps.InfoWindow();
-
-markers[id].addListener("click",()=>{
-
-info.setContent(`
-
-<b>Cidade:</b> ${l.cidade || "desconhecido"}<br>
-<b>País:</b> ${l.pais || "desconhecido"}<br>
-<b>IP:</b> ${l.ip || "desconhecido"}<br>
-<b>Celular:</b> ${l.celular || "desconhecido"}
-
-`);
-
-info.open(map,markers[id]);
-
-});
-
-markers[id].addListener("click",()=>{
-
-info.open(map,markers[id])
-
-});
 
 }
 
 });
+
+}
 
 </script>
 
