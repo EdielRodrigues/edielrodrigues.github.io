@@ -6,67 +6,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Painel Rastreador</title>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<title>Painel Localizações</title>
 
 <style>
 
 body{
 margin:0;
 font-family:Arial;
-background:#071a26;
+background:#0f0f0f;
 color:white;
-text-align:center;
 }
 
 #map{
 width:100%;
-height:50vh;
-}
-
-#dashboard{
-display:flex;
-justify-content:center;
-gap:10px;
-padding:10px;
-}
-
-.card{
-background:#0d2633;
-padding:10px;
-border-radius:8px;
-width:120px;
-}
-
-#painel{
-padding:10px;
-}
-
-.usuario{
-background:#111;
-margin:10px auto;
-padding:10px;
-border-radius:8px;
-width:90%;
-}
-
-#radar{
-position:absolute;
-top:50%;
-left:50%;
-width:250px;
-height:250px;
-border-radius:50%;
-border:2px solid #00ff9d;
-transform:translate(-50%,-50%);
-animation:radar 4s linear infinite;
-pointer-events:none;
-}
-
-@keyframes radar{
-0%{transform:translate(-50%,-50%) rotate(0deg)}
-100%{transform:translate(-50%,-50%) rotate(360deg)}
+height:100vh;
 }
 
 </style>
@@ -77,108 +30,10 @@ pointer-events:none;
 
 <div id="map"></div>
 
-<div id="radar"></div>
+<script type="module">
 
-<div id="dashboard">
-
-<div class="card">
-👥 Usuários<br>
-<span id="total">0</span>
-</div>
-
-<div class="card">
-🚗 Movimento<br>
-<span id="movimento">0</span>
-</div>
-
-</div>
-
-<canvas id="grafico"></canvas>
-
-<div id="painel"></div>
-
-<script>
-
-let map
-let markers={}
-let linhas={}
-
-let area={
-lat:-18,
-lng:-49,
-raio:3000
-}
-
-let chart
-
-function initMap(){
-
-map=new google.maps.Map(document.getElementById("map"),{
-
-zoom:4,
-center:{lat:-15,lng:-55},
-
-styles:[
-{elementType:"geometry",stylers:[{color:"#071a26"}]},
-{elementType:"labels.text.fill",stylers:[{color:"#00ff9d"}]},
-{featureType:"water",stylers:[{color:"#021017"}]}
-]
-
-})
-
-let ctx=document.getElementById("grafico")
-
-chart=new Chart(ctx,{
-type:"line",
-data:{
-labels:[],
-datasets:[{
-label:"Movimento",
-data:[],
-borderColor:"#00ff9d"
-}]
-}
-})
-
-carregarUsuarios()
-
-}
-
-function verificarArea(lat,lng){
-
-let dist=google.maps.geometry.spherical.computeDistanceBetween(
-
-new google.maps.LatLng(lat,lng),
-new google.maps.LatLng(area.lat,area.lng)
-
-)
-
-if(dist>area.raio){
-
-alert("🚨 Usuário saiu da área")
-
-}
-
-}
-
-function identificarDevice(ua){
-
-if(ua.includes("Android")) return "Android"
-if(ua.includes("iPhone")) return "iPhone"
-if(ua.includes("Windows")) return "PC"
-
-return "Desconhecido"
-
-}
-
-function carregarUsuarios(){
-
-import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js").then(firebase=>{
-
-import("https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js").then(firebaseDB=>{
-
-const { initializeApp } = firebase
-const { getDatabase, ref, onValue } = firebaseDB
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
 
@@ -190,103 +45,79 @@ storageBucket:"ferramentas-projeto.appspot.com",
 messagingSenderId:"877191590019",
 appId:"1:877191590019:web:152d4d35bdd3024c53abb6"
 
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+let map;
+let markers={};
+
+window.initMap=function(){
+
+map=new google.maps.Map(document.getElementById("map"),{
+
+zoom:5,
+center:{lat:-15,lng:-55}
+
+});
+
 }
 
-const app=initializeApp(firebaseConfig)
-const db=getDatabase(app)
+/* pegar todas localizações */
 
-onValue(ref(db,"usuarios"),snapshot=>{
+onValue(ref(db,"localizacoes"),snapshot=>{
 
-let dados=snapshot.val()
-
-let painel=document.getElementById("painel")
-
-painel.innerHTML=""
-
-let total=0
-let movimento=0
+let dados=snapshot.val();
 
 for(let id in dados){
 
-let u=dados[id]
+let l=dados[id];
 
-let lat=u.latitude
-let lng=u.longitude
-
-total++
-
-verificarArea(lat,lng)
+let lat=l.latitude;
+let lng=l.longitude;
 
 if(!markers[id]){
 
 markers[id]=new google.maps.Marker({
 
 position:{lat:lat,lng:lng},
-map:map,
-icon:{
-path:google.maps.SymbolPath.CIRCLE,
-scale:8,
-fillColor:"#00ff9d",
-fillOpacity:1,
-strokeWeight:2
-}
-
-})
-
-linhas[id]=new google.maps.Polyline({
-
-path:[{lat:lat,lng:lng}],
-geodesic:true,
-strokeColor:"#00ff9d",
-strokeWeight:3,
 map:map
 
-})
+});
 
 }else{
 
-markers[id].setPosition({lat:lat,lng:lng})
-
-let path=linhas[id].getPath()
-path.push(new google.maps.LatLng(lat,lng))
+markers[id].setPosition({lat:lat,lng:lng});
 
 }
 
-chart.data.labels.push(new Date().toLocaleTimeString())
-chart.data.datasets[0].data.push(lat)
-chart.update()
+let info = new google.maps.InfoWindow({
 
-let modelo=identificarDevice(u.device)
+content:`
 
-painel.innerHTML+=`
-
-<div class="usuario">
-
-👤 ${id}<br>
-📱 ${modelo}<br>
-🔋 ${u.bateria}<br>
-📶 ${u.conexao}
-
-</div>
+<b>Cidade:</b> ${l.cidade}<br>
+<b>País:</b> ${l.pais}<br>
+<b>IP:</b> ${l.ip}<br>
+<b>Celular:</b> ${l.celular}
 
 `
 
-}
+});
 
-document.getElementById("total").innerText=total
-document.getElementById("movimento").innerText=movimento
+markers[id].addListener("click",()=>{
 
-})
+info.open(map,markers[id])
 
-})
-
-})
+});
 
 }
+
+});
 
 </script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA56xoogq9DtYtk-qWOr8zhswUgRd2LVWs&libraries=geometry&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA56xoogq9DtYtk-qWOr8zhswUgRd2LVWs&callback=initMap"></script>
 
 </body>
 </html>
