@@ -92,16 +92,20 @@ markers[id].setPosition({lat:lat,lng:lng});
 
 }
 
-let info = new google.maps.InfoWindow({
+let info = new google.maps.InfoWindow();
 
-content:`
+markers[id].addListener("click",()=>{
 
-<b>Cidade:</b> ${l.cidade}<br>
-<b>País:</b> ${l.pais}<br>
-<b>IP:</b> ${l.ip}<br>
-<b>Celular:</b> ${l.celular}
+info.setContent(`
 
-`
+<b>Cidade:</b> ${l.cidade || "desconhecido"}<br>
+<b>País:</b> ${l.pais || "desconhecido"}<br>
+<b>IP:</b> ${l.ip || "desconhecido"}<br>
+<b>Celular:</b> ${l.celular || "desconhecido"}
+
+`);
+
+info.open(map,markers[id]);
 
 });
 
