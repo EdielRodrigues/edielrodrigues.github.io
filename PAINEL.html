@@ -2,18 +2,16 @@
 <html lang="pt-BR">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Painel Localizações</title>
+<title>Painel Rastreamento</title>
 
 <style>
 
 body{
 margin:0;
-font-family:Arial;
 background:#0f0f0f;
+font-family:Arial;
 color:white;
 }
 
@@ -23,7 +21,6 @@ height:100vh;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -36,7 +33,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
-
 apiKey:"AIzaSyDrtZxbKXk7hjlqBL_BLoZMTBdc5iqBCXo",
 authDomain:"ferramentas-projeto.firebaseapp.com",
 databaseURL:"https://ferramentas-projeto.firebaseio.com/",
@@ -44,7 +40,6 @@ projectId:"ferramentas-projeto",
 storageBucket:"ferramentas-projeto.appspot.com",
 messagingSenderId:"877191590019",
 appId:"1:877191590019:web:152d4d35bdd3024c53abb6"
-
 };
 
 const app = initializeApp(firebaseConfig);
@@ -56,66 +51,65 @@ let rotas = {};
 
 window.initMap=function(){
 
-map=new google.maps.Map(document.getElementById("map"),{
-
-zoom:6,
-center:{lat:-18,lng:-49}
-
+map = new google.maps.Map(document.getElementById("map"),{
+zoom:5,
+center:{lat:-15,lng:-55}
 });
 
-onValue(ref(db,"localizacoes"),snapshot=>{
+onValue(ref(db,"usuarios"),snapshot=>{
 
 let dados=snapshot.val();
 
-if(!dados) return;
-
 for(let id in dados){
 
-let l=dados[id];
+let u=dados[id];
 
-let lat=l.latitude;
-let lng=l.longitude;
+let lat=u.latitude;
+let lng=u.longitude;
+
+/* verificar status */
+
+let agora = Date.now();
+let diferenca = agora - u.data;
+
+let status = "🟢 Online";
+
+if(diferenca > 15000){
+status = "🔴 Offline";
+}
 
 if(!markers[id]){
 
-let marker=new google.maps.Marker({
-
+markers[id]=new google.maps.Marker({
 position:{lat:lat,lng:lng},
 map:map
-
 });
 
-markers[id]=marker;
-
-/* criar rota */
+/* rota */
 
 rotas[id]=new google.maps.Polyline({
-
 path:[{lat:lat,lng:lng}],
 geodesic:true,
 strokeColor:"#00ff9d",
 strokeOpacity:1,
 strokeWeight:3,
 map:map
-
 });
-
-/* janela info */
 
 let info=new google.maps.InfoWindow();
 
-marker.addListener("click",()=>{
+markers[id].addListener("click",()=>{
 
 info.setContent(
-"<div style='background:#0f0f0f;color:white;padding:10px;border-radius:6px'>"+
-"<b>Cidade:</b> "+l.cidade+"<br>"+
-"<b>País:</b> "+l.pais+"<br>"+
-"<b>IP:</b> "+l.ip+"<br>"+
-"<b>Celular:</b> "+l.celular+
+"<div style='background:#111;color:white;padding:10px'>"+
+status+"<br>"+
+"🔋 Bateria: "+u.bateria+"<br>"+
+"📶 Rede: "+u.rede+"<br>"+
+"📱 "+u.celular+
 "</div>"
 );
 
-info.open(map,marker);
+info.open(map,markers[id]);
 
 });
 
@@ -125,7 +119,7 @@ markers[id].setPosition({lat:lat,lng:lng});
 
 /* atualizar linha */
 
-let caminho = rotas[id].getPath();
+let caminho=rotas[id].getPath();
 caminho.push(new google.maps.LatLng(lat,lng));
 
 }
