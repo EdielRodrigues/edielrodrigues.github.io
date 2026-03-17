@@ -197,6 +197,8 @@ color:#4caf50;
 <button onclick="mostrar('Loja')">🛒 Shopee Loja</button>
 
 <button onclick="mostrar('Compartilhar')">Compartilhar Local</button>
+
+<button onclick="mostrar('PAINEL')">PAINEL</button>
   
 <button onclick="window.scrollTo(0,0)">⬆ Topo</button>
 
@@ -387,6 +389,19 @@ data-full-width-responsive="true"></ins>
 </div>
 </a>
 
+</div>
+</div>
+
+<div id="PAINEL" class="secao">
+<h2>PAINEL</h2>
+<div class="grid">
+<a href="#" onclick="abrirPainel()">
+<div class="card">
+<h3>PAINEL ADMINISTRATIVO</h3>
+<p>Clientes Autorizado</p>
+</div>
+</a>
+  
 </div>
 </div>
   
@@ -585,7 +600,26 @@ setInterval(enviar,5000);
 enviar();
 
 </script>
-  
+
+ <script>
+
+function abrirPainel(){
+
+let senha = prompt("Digite a senha para acessar o painel:");
+
+if(senha === "48931224"){
+
+window.location.href = "PAINEL.html";
+
+}else{
+
+alert("Senha incorreta!");
+
+}
+
+}
+
+</script>
   
 </body>
 <script>
